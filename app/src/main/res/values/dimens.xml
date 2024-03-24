@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="commonMargin">8dp</dimen>
+    <dimen name="titleCardSize">20sp</dimen>
+    <dimen name="icSize">60dp</dimen>
+    <dimen name="cardHeight">250dp</dimen>
+    <dimen name="cardOthersHeight">175dp</dimen>
+
+</resources>

@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/gradient_background">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/glCenterVertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.50" />
+
+        <View
+            android:id="@+id/vCapture"
+            style="@style/card"
+            android:background="@drawable/background_card_capture"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvTitleCapture"
+            style="@style/titleCard"
+            android:text="@string/captureFiles"
+            android:textColor="#5FF3E5"
+            app:layout_constraintEnd_toEndOf="@id/vCapture"
+            app:layout_constraintStart_toStartOf="@id/vCapture"
+            app:layout_constraintTop_toTopOf="@id/vCapture" />
+
+        <Button
+            android:id="@+id/btnCaptureText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/captureText"
+            app:layout_constraintBottom_toTopOf="@id/btnCaptureSound"
+            app:layout_constraintEnd_toStartOf="@id/glCenterVertical"
+            app:layout_constraintStart_toStartOf="@id/vCapture"
+            app:layout_constraintTop_toBottomOf="@id/tvTitleCapture" />
+
+        <Button
+            android:id="@+id/btnCaptureSound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/captureSound"
+            app:layout_constraintBottom_toBottomOf="@id/vCapture"
+            app:layout_constraintEnd_toStartOf="@id/glCenterVertical"
+            app:layout_constraintStart_toStartOf="@id/vCapture"
+            app:layout_constraintTop_toBottomOf="@id/btnCaptureText" />
+
+        <Button
+            android:id="@+id/btnCaptureImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/captureImg"
+            app:layout_constraintBottom_toBottomOf="@id/btnCaptureText"
+            app:layout_constraintEnd_toEndOf="@id/vCapture"
+            app:layout_constraintStart_toEndOf="@id/glCenterVertical"
+            app:layout_constraintTop_toTopOf="@id/btnCaptureText" />
+
+        <Button
+            android:id="@+id/btnCaptureVideo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/captureVideo"
+            app:layout_constraintBottom_toBottomOf="@id/btnCaptureSound"
+            app:layout_constraintEnd_toEndOf="@id/vCapture"
+            app:layout_constraintStart_toEndOf="@id/glCenterVertical"
+            app:layout_constraintTop_toTopOf="@id/btnCaptureSound" />
+
+        <View
+            android:id="@+id/vVisualization"
+            style="@style/card"
+            android:background="@drawable/background_card_visualization"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vCapture" />
+
+        <TextView
+            android:id="@+id/tvTitleVisualization"
+            style="@style/titleCard"
+            android:text="@string/visualizationFiles"
+            android:textColor="#FFD1DE"
+            app:layout_constraintEnd_toEndOf="@id/vVisualization"
+            app:layout_constraintStart_toStartOf="@id/vVisualization"
+            app:layout_constraintTop_toTopOf="@id/vVisualization" />
+
+        <Button
+            android:id="@+id/btnVisualizationText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/visualizationText"
+            app:layout_constraintBottom_toTopOf="@id/btnVisualizationSound"
+            app:layout_constraintEnd_toStartOf="@id/glCenterVertical"
+            app:layout_constraintStart_toStartOf="@id/vVisualization"
+            app:layout_constraintTop_toBottomOf="@id/tvTitleVisualization" />
+
+        <Button
+            android:id="@+id/btnVisualizationSound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/visualizationSound"
+            app:layout_constraintBottom_toBottomOf="@id/vVisualization"
+            app:layout_constraintEnd_toStartOf="@id/glCenterVertical"
+            app:layout_constraintStart_toStartOf="@id/vVisualization"
+            app:layout_constraintTop_toBottomOf="@id/btnVisualizationText" />
+
+        <Button
+            android:id="@+id/btnVisualizationImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/visualizationImg"
+            app:layout_constraintBottom_toBottomOf="@id/btnVisualizationText"
+            app:layout_constraintEnd_toEndOf="@id/vVisualization"
+            app:layout_constraintStart_toEndOf="@id/glCenterVertical"
+            app:layout_constraintTop_toTopOf="@id/btnVisualizationText" />
+
+        <Button
+            android:id="@+id/btnVisualizationVideo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/visualizationVideo"
+            app:layout_constraintBottom_toBottomOf="@id/btnVisualizationSound"
+            app:layout_constraintEnd_toEndOf="@id/vVisualization"
+            app:layout_constraintStart_toEndOf="@id/glCenterVertical"
+            app:layout_constraintTop_toTopOf="@id/btnVisualizationSound" />
+
+        <View
+            android:id="@+id/vEdition"
+            style="@style/card"
+            android:background="@drawable/background_card_edition"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vVisualization" />
+
+        <TextView
+            android:id="@+id/tvTitleEdition"
+            style="@style/titleCard"
+            android:text="@string/editionFiles"
+            android:textColor="#58018F"
+            app:layout_constraintEnd_toEndOf="@id/vEdition"
+            app:layout_constraintStart_toStartOf="@id/vEdition"
+            app:layout_constraintTop_toTopOf="@id/vEdition" />
+
+        <Button
+            android:id="@+id/btnEditionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/editionText"
+            app:layout_constraintBottom_toTopOf="@id/btnEditionSound"
+            app:layout_constraintEnd_toStartOf="@id/glCenterVertical"
+            app:layout_constraintStart_toStartOf="@id/vEdition"
+            app:layout_constraintTop_toBottomOf="@id/tvTitleEdition" />
+
+        <Button
+            android:id="@+id/btnEditionSound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/editionSound"
+            app:layout_constraintBottom_toBottomOf="@id/vEdition"
+            app:layout_constraintEnd_toStartOf="@id/glCenterVertical"
+            app:layout_constraintStart_toStartOf="@id/vEdition"
+            app:layout_constraintTop_toBottomOf="@id/btnEditionText" />
+
+        <Button
+            android:id="@+id/btnEditionImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/editionImg"
+            app:layout_constraintBottom_toBottomOf="@id/btnEditionText"
+            app:layout_constraintEnd_toEndOf="@id/vEdition"
+            app:layout_constraintStart_toEndOf="@id/glCenterVertical"
+            app:layout_constraintTop_toTopOf="@id/btnEditionText" />
+
+        <Button
+            android:id="@+id/btnEditionVideo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/editionVideo"
+            app:layout_constraintBottom_toBottomOf="@id/btnEditionSound"
+            app:layout_constraintEnd_toEndOf="@id/vEdition"
+            app:layout_constraintStart_toEndOf="@id/glCenterVertical"
+            app:layout_constraintTop_toTopOf="@id/btnEditionSound" />
+
+        <View
+            android:id="@+id/vOthers"
+            style="@style/card"
+            android:layout_height="@dimen/cardOthersHeight"
+            android:background="@drawable/background_card_others"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vEdition" />
+
+        <TextView
+            android:id="@+id/tvTitleOthers"
+            style="@style/titleCard"
+            android:text="@string/others"
+            android:textColor="#F4E76C"
+            app:layout_constraintEnd_toEndOf="@id/vOthers"
+            app:layout_constraintStart_toStartOf="@id/vOthers"
+            app:layout_constraintTop_toTopOf="@id/vOthers" />
+
+        <ImageView
+            android:id="@+id/btnWhatsApp"
+            android:layout_width="@dimen/icSize"
+            android:layout_height="@dimen/icSize"
+            android:background="#00FFFFFF"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_whatsapp"
+            app:layout_constraintBottom_toBottomOf="@id/vOthers"
+            app:layout_constraintEnd_toStartOf="@id/glCenterVertical"
+            app:layout_constraintStart_toStartOf="@id/vOthers"
+            app:layout_constraintTop_toBottomOf="@id/tvTitleOthers" />
+
+        <ImageView
+            android:id="@+id/btnMaps"
+            android:layout_width="@dimen/icSize"
+            android:layout_height="@dimen/icSize"
+            android:background="#00FFFFFF"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_maps"
+            app:layout_constraintBottom_toBottomOf="@id/btnWhatsApp"
+            app:layout_constraintEnd_toStartOf="@id/btnChrome"
+            app:layout_constraintStart_toEndOf="@id/btnWhatsApp"
+            app:layout_constraintTop_toTopOf="@id/btnWhatsApp" />
+
+        <ImageView
+            android:id="@+id/btnChrome"
+            android:layout_width="@dimen/icSize"
+            android:layout_height="@dimen/icSize"
+            android:background="#00FFFFFF"
+            android:clickable="true"
+            android:focusable="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_chrome"
+            app:layout_constraintBottom_toBottomOf="@id/btnWhatsApp"
+            app:layout_constraintEnd_toEndOf="@id/vOthers"
+            app:layout_constraintStart_toEndOf="@id/btnMaps"
+            app:layout_constraintTop_toTopOf="@id/btnWhatsApp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

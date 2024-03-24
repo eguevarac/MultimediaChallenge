@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">MultimediaChallenge</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="captureFiles">Captura de archivos</string>
+    <string name="visualizationFiles">Visualización de archivos</string>
+    <string name="editionFiles">Edición de archivos</string>
+    <string name="others">Otros</string>
+    <string name="captureText">Capturar texto</string>
+    <string name="captureSound">Capturar Sonido</string>
+    <string name="captureImg">Capturar imagen</string>
+    <string name="captureVideo">Capturar vídeo</string>
+    <string name="visualizationText">Leer texto</string>
+    <string name="visualizationSound">Reproducir sonido</string>
+    <string name="visualizationImg">Ver imagen</string>
+    <string name="visualizationVideo">Reproducir vídeo</string>
+    <string name="editionText">Editar texto</string>
+    <string name="editionSound">Editar audio</string>
+    <string name="editionImg">Editar imagen</string>
+    <string name="editionVideo">Editar vídeo</string>
 </resources>
