@@ -9,5 +9,14 @@
         android:id="@+id/mainFragment"
         android:name="com.example.multimediachallenge.ui.MainFragment"
         android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment_to_textEditionFragment"
+            app:destination="@id/textEditionFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/textEditionFragment"
+        android:name="com.example.multimediachallenge.ui.TextEditionFragment"
+        android:label="fragment_text_edition"
+        tools:layout="@layout/fragment_text_edition" />
 </navigation>

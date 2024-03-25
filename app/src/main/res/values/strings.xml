@@ -17,4 +17,10 @@
     <string name="editionSound">Editar audio</string>
     <string name="editionImg">Editar imagen</string>
     <string name="editionVideo">Editar vídeo</string>
+    <string name="italic">Cursiva</string>
+    <string name="title">Título</string>
+    <string name="body">Cuerpo</string>
+    <string name="save">Guardar</string>
+    <string name="bold">Negrita</string>
+    <string name="fontSize">Tamaño de la fuente</string>
 </resources>

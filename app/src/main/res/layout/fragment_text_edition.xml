@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.TextEditionFragment"
+    android:background="@drawable/background_card_capture">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvSize"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fontSize"
+            android:textColor="#4CFA0C"
+            android:layout_marginBottom="@dimen/commonMargin"
+            app:layout_constraintStart_toEndOf="@id/chbBold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/chbBold" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/commonMargin"
+            app:layout_constraintStart_toEndOf="@id/chbBold"
+            app:layout_constraintTop_toBottomOf="@id/tvSize"
+            android:background="#9BA8ED"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <CheckBox
+            android:id="@+id/chbBold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tvSize"
+            app:layout_constraintTop_toBottomOf="@id/etTitle"
+            app:layout_constraintBottom_toTopOf="@id/chbItalic"
+            android:text="@string/bold"
+            android:textColor="@color/white" />
+
+        <CheckBox
+            android:id="@+id/chbItalic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tvSize"
+            app:layout_constraintTop_toBottomOf="@id/chbBold"
+            app:layout_constraintBottom_toTopOf="@id/etBody"
+            android:text="@string/italic"
+            android:textColor="@color/white" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            android:background="@color/white"
+            android:hint="@string/title"
+            app:layout_constraintEnd_toEndOf="@id/etBody"
+            app:layout_constraintStart_toStartOf="@id/etBody"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etBody"
+            android:layout_width="250dp"
+            android:layout_height="300dp"
+            android:background="@color/white"
+            android:gravity="start"
+            android:hint="@string/body"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etTitle" />
+
+        <Button
+            android:id="@+id/btnAccept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/save"
+            app:layout_constraintTop_toBottomOf="@id/etBody"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
