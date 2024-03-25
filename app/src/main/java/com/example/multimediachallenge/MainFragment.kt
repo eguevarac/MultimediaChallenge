@@ -14,11 +14,17 @@ import com.example.multimediachallenge.databinding.FragmentMainBinding
 class MainFragment : Fragment() {
 
     private lateinit var binding : FragmentMainBinding
-    //private lateinit var imgUri: Uri
-    private val contractCamera: ActivityResultLauncher<Uri> =
+
+    private val contractCameraForPictures: ActivityResultLauncher<Uri> =
         registerForActivityResult(ActivityResultContracts.TakePicture()) { userClickSave ->
             if (userClickSave) {
-                CameraManager.showNameToPictureDialog(requireContext())
+                CameraManager.showNameToPictureDialog(requireContext(), "Ponle nombre a la foto", true)
+            }
+        }
+    private val contractCameraForVideos: ActivityResultLauncher<Uri> =
+        registerForActivityResult(ActivityResultContracts.CaptureVideo()) { userClickSave ->
+            if (userClickSave) {
+                CameraManager.showNameToPictureDialog(requireContext(), "Ponle nombre al vídeo", false)
             }
         }
 
@@ -37,8 +43,8 @@ class MainFragment : Fragment() {
         with(binding){
             btnCaptureText.setOnClickListener {  }
             btnCaptureSound.setOnClickListener {  }
-            btnCaptureImg.setOnClickListener { CameraManager.takePicture(requireContext(), contractCamera) }
-            btnCaptureVideo.setOnClickListener {  }
+            btnCaptureImg.setOnClickListener { CameraManager.startContract(requireContext(), contractCameraForPictures) }
+            btnCaptureVideo.setOnClickListener { CameraManager.startContract(requireContext(), contractCameraForVideos) }
 
             btnVisualizationText.setOnClickListener {  }
             btnVisualizationSound.setOnClickListener {  }
