@@ -1,14 +1,15 @@
-package com.example.multimediachallenge
+package com.example.multimediachallenge.ui
 
 import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.Fragment
 import com.example.multimediachallenge.databinding.FragmentMainBinding
+import com.example.multimediachallenge.utils.CameraManager
 
 
 class MainFragment : Fragment() {
@@ -18,13 +19,13 @@ class MainFragment : Fragment() {
     private val contractCameraForPictures: ActivityResultLauncher<Uri> =
         registerForActivityResult(ActivityResultContracts.TakePicture()) { userClickSave ->
             if (userClickSave) {
-                CameraManager.showNameToPictureDialog(requireContext(), "Ponle nombre a la foto", true)
+                CameraManager.nameToFileDialog(requireContext(), "Ponle nombre a la foto", true)
             }
         }
     private val contractCameraForVideos: ActivityResultLauncher<Uri> =
         registerForActivityResult(ActivityResultContracts.CaptureVideo()) { userClickSave ->
             if (userClickSave) {
-                CameraManager.showNameToPictureDialog(requireContext(), "Ponle nombre al vídeo", false)
+                CameraManager.nameToFileDialog(requireContext(), "Ponle nombre al vídeo", false)
             }
         }
 
@@ -38,7 +39,6 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
 
         with(binding){
             btnCaptureText.setOnClickListener {  }

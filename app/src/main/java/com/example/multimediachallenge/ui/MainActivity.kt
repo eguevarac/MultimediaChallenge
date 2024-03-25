@@ -1,9 +1,10 @@
-package com.example.multimediachallenge
+package com.example.multimediachallenge.ui
 
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.appcompat.app.AppCompatActivity
+import com.example.multimediachallenge.R
 import com.example.multimediachallenge.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
