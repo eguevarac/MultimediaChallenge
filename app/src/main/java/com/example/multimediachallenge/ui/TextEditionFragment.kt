@@ -1,25 +1,13 @@
 package com.example.multimediachallenge.ui
 
-import android.os.Build
 import android.os.Bundle
 import android.text.Html
-import android.text.Spannable
-import android.text.SpannableStringBuilder
 import android.text.Spanned
-import android.text.TextUtils
-import android.text.style.BackgroundColorSpan
-import android.text.style.ForegroundColorSpan
-import android.text.style.RelativeSizeSpan
-import android.text.style.StyleSpan
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
-import android.widget.EditText
-import androidx.annotation.RequiresApi
-import androidx.core.text.toSpannable
 import androidx.fragment.app.Fragment
 import com.example.multimediachallenge.databinding.FragmentTextEditionBinding
 import com.example.multimediachallenge.utils.TextManager
@@ -89,9 +77,9 @@ class TextEditionFragment : Fragment() {
 
         binding.etBody.setText(spanned)
         setFontSize()
-        
-        Log.i(">", "el textToShow ->" + textToShow)
-        Log.i(">", "el spaned ->" + spanned)
+
+        /*Log.i(">", "el textToShow ->" + textToShow)
+        Log.i(">", "el spaned ->" + spanned)*/
     }
 
     private fun setFontSize() {
