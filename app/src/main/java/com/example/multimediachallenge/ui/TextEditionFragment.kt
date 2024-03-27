@@ -53,19 +53,19 @@ class TextEditionFragment : Fragment() {
 
         if (binding.chbBold.isChecked && !binding.chbItalic.isChecked) {
 
-            textToShow = "<b>" + originText + "</b>"
+            textToShow = "<b>$originText</b>"
             //textToShow = setFontSize(textToShow)
             spanned = Html.fromHtml(textToShow)
 
         } else if (binding.chbBold.isChecked && binding.chbItalic.isChecked) {
 
-            textToShow = "<em><b>" + originText + "</b></em>"
+            textToShow = "<em><b>$originText</b></em>"
             //textToShow = setFontSize(textToShow)
             spanned = Html.fromHtml(textToShow)
 
         } else if (!binding.chbBold.isChecked && binding.chbItalic.isChecked) {
 
-            textToShow = "<em>" + originText + "</em>"
+            textToShow = "<em>$originText</em>"
             //textToShow = setFontSize(textToShow)
             spanned = Html.fromHtml(textToShow)
 
