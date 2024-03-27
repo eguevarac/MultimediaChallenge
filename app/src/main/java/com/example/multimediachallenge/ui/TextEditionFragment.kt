@@ -1,20 +1,34 @@
 package com.example.multimediachallenge.ui
 
+import android.os.Build
 import android.os.Bundle
 import android.text.Html
+import android.text.Spannable
+import android.text.SpannableStringBuilder
 import android.text.Spanned
+import android.text.TextUtils
+import android.text.style.BackgroundColorSpan
+import android.text.style.ForegroundColorSpan
+import android.text.style.RelativeSizeSpan
+import android.text.style.StyleSpan
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.EditText
+import androidx.annotation.RequiresApi
+import androidx.core.text.toSpannable
 import androidx.fragment.app.Fragment
 import com.example.multimediachallenge.databinding.FragmentTextEditionBinding
+import com.example.multimediachallenge.utils.TextManager
 
 
 class TextEditionFragment : Fragment() {
 
     private lateinit var binding: FragmentTextEditionBinding
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,59 +43,86 @@ class TextEditionFragment : Fragment() {
 
         setupSpinner()
 
+        binding.btnAccept.setOnClickListener {
+
+            TextManager.addTextFileToStorage(
+                requireContext(),
+                binding.etTitle.text.toString(),
+                binding.etBody.text.toString()
+            )
+
+            binding.etBody.setText(binding.etBody.text.toString())
+
+        }
         binding.chbBold.setOnCheckedChangeListener { _, _ -> setTextWithConditions() }
         binding.chbItalic.setOnCheckedChangeListener { _, _ -> setTextWithConditions() }
-
-        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                setTextWithConditions()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                setTextWithConditions()
-            }
-        }
     }
 
     private fun setTextWithConditions() {
         val originText = binding.etBody.text.toString().replace("\n", "<br>")
         var spanned: Spanned? = null
-        var textToShow: String?
+        var textToShow: String? = null
 
         if (binding.chbBold.isChecked && !binding.chbItalic.isChecked) {
 
             textToShow = "<b>" + originText + "</b>"
-            textToShow = setFontSize(textToShow)
+            //textToShow = setFontSize(textToShow)
             spanned = Html.fromHtml(textToShow)
 
         } else if (binding.chbBold.isChecked && binding.chbItalic.isChecked) {
 
             textToShow = "<em><b>" + originText + "</b></em>"
-            textToShow = setFontSize(textToShow)
+            //textToShow = setFontSize(textToShow)
             spanned = Html.fromHtml(textToShow)
 
         } else if (!binding.chbBold.isChecked && binding.chbItalic.isChecked) {
 
             textToShow = "<em>" + originText + "</em>"
-            textToShow = setFontSize(textToShow)
+            //textToShow = setFontSize(textToShow)
             spanned = Html.fromHtml(textToShow)
 
         } else if (!binding.chbBold.isChecked && !binding.chbItalic.isChecked) {
 
-            textToShow = setFontSize(originText)
-            spanned = Html.fromHtml(textToShow)
+            //textToShow = setFontSize(originText)
+            spanned = Html.fromHtml(originText)
         }
 
         binding.etBody.setText(spanned)
-        //binding.etBody.textSize = binding.spinner.selectedItem.toString().toFloat()
+        setFontSize()
+        
+        Log.i(">", "el textToShow ->" + textToShow)
+        Log.i(">", "el spaned ->" + spanned)
     }
 
-    private fun setFontSize(textToResize: String): String {
+    private fun setFontSize() {
+
+        when (binding.spinner.selectedItem) {
+            "14" -> {
+                binding.etBody.textSize = 14f
+            }
+
+            "16" -> {
+                binding.etBody.textSize = 16f
+            }
+
+            "18" -> {
+                binding.etBody.textSize = 18f
+            }
+
+            "20" -> {
+                binding.etBody.textSize = 20f
+            }
+
+            "22" -> {
+                binding.etBody.textSize = 22f
+            }
+
+            else -> {
+                binding.etBody.textSize = 12f
+            }
+        }
+    }
+    /*private fun setFontSize(textToResize: String): String {
         var textToShow: String?
         when (binding.spinner.selectedItem) {
             "h1" -> {
@@ -109,14 +150,28 @@ class TextEditionFragment : Fragment() {
             }
         }
         return textToShow
-    }
-
+    }*/
 
     private fun setupSpinner() {
-        val spinnerOptions = listOf("Tamaño normal", "h5", "h4", "h3", "h2", "h1")
+        val spinnerOptions = listOf("14", "16", "18", "20", "22", "24")
         val adapter =
             ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, spinnerOptions)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.spinner.adapter = adapter
+
+        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                setTextWithConditions()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                setTextWithConditions()
+            }
+        }
     }
 }

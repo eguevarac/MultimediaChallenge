@@ -47,8 +47,6 @@ dependencies {
 
     val nav_version = "2.7.7"
 
-    // para cifrar con bcrypt
-    implementation("org.mindrot:jbcrypt:0.4")
 
     //para google maps
     implementation("com.google.android.gms:play-services-maps:18.2.0")
@@ -64,26 +62,6 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
-    //Lifecycle & Coroutines
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
-    implementation("androidx.activity:activity-ktx:1.8.2")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3")
-
-    // Retrofit
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation("com.squareup.retrofit2:converter-simplexml:2.9.0")
-    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
-    implementation("com.squareup.retrofit2:converter-scalars:2.9.0")
-
-    //Glide
-    implementation("com.github.bumptech.glide:glide:4.16.0")
-    ksp("com.github.bumptech.glide:compiler:4.16.0")
-    ksp("com.github.bumptech.glide:ksp:4.16.0")
-    implementation("com.caverock:androidsvg:1.4")
 
     //las que vienen de serie
     implementation("androidx.core:core-ktx:1.12.0")
