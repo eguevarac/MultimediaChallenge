@@ -25,4 +25,5 @@
     <string name="fontSize">Tamaño de la fuente</string>
     <string name="findImgAtGallery">Buscar imagen en la galería</string>
     <string name="findText">Buscar texto</string>
+    <string name="findVideoAtGallery">Buscar vídeo en la galería</string>
 </resources>

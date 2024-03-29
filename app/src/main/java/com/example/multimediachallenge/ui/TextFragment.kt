@@ -7,9 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.core.content.ContextCompat
 import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
+import com.example.multimediachallenge.R
 import com.example.multimediachallenge.databinding.FragmentTextBinding
 import com.example.multimediachallenge.utils.TextManager
 import com.example.multimediachallenge.utils.TypeOfTextFragment
@@ -46,6 +48,10 @@ class TextFragment : Fragment() {
 
     private fun setupTextReaderFragment() {
         with(binding) {
+            root.background = ContextCompat.getDrawable(
+                requireContext(),
+                R.drawable.background_card_visualization
+            )
             btnAccept.visibility = View.GONE
             chbBold.visibility = View.GONE
             chbItalic.visibility = View.GONE
@@ -61,8 +67,13 @@ class TextFragment : Fragment() {
 
             if (args.typeOfTextFragment == TypeOfTextFragment.TextCreation) {
                 btnFindTxt.visibility = View.GONE
+                root.background =
+                    ContextCompat.getDrawable(requireContext(), R.drawable.background_card_capture)
+
             } else {
                 etTitle.isEnabled = false
+                root.background =
+                    ContextCompat.getDrawable(requireContext(), R.drawable.background_card_edition)
             }
 
             btnAccept.setOnClickListener {

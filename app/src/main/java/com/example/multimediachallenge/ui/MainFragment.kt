@@ -102,7 +102,11 @@ class MainFragment : Fragment() {
                     MainFragmentDirections.actionMainFragmentToImgFragment()
                 )
             }
-            btnVisualizationVideo.setOnClickListener { }
+            btnVisualizationVideo.setOnClickListener {
+                findNavController().navigate(
+                    MainFragmentDirections.actionMainFragmentToVideoFragment()
+                )
+            }
 
             btnEditionText.setOnClickListener {
                 findNavController().navigate(
