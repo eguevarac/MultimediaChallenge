@@ -9,19 +9,19 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
-import com.example.multimediachallenge.databinding.FragmentTextEditionBinding
+import com.example.multimediachallenge.databinding.FragmentTextBinding
 import com.example.multimediachallenge.utils.TextManager
 
 
-class TextEditionFragment : Fragment() {
+class TextFragment : Fragment() {
 
-    private lateinit var binding: FragmentTextEditionBinding
+    private lateinit var binding: FragmentTextBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentTextEditionBinding.inflate(inflater, container, false)
+        binding = FragmentTextBinding.inflate(inflater, container, false)
         return binding.root
     }
 

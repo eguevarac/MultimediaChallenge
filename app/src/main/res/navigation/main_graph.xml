@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/textEditionFragment"
-        android:name="com.example.multimediachallenge.ui.TextEditionFragment"
+        android:name="com.example.multimediachallenge.ui.TextFragment"
         android:label="fragment_text_edition"
-        tools:layout="@layout/fragment_text_edition" />
+        tools:layout="@layout/fragment_text" />
 </navigation>

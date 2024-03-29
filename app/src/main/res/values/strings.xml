@@ -23,4 +23,5 @@
     <string name="save">Guardar</string>
     <string name="bold">Negrita</string>
     <string name="fontSize">Tamaño de la fuente</string>
+    <string name="findImgAtGallery">Buscar imagen en la galería</string>
 </resources>
