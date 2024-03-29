@@ -13,10 +13,22 @@
         <action
             android:id="@+id/action_mainFragment_to_textEditionFragment"
             app:destination="@id/textEditionFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_imgFragment"
+            app:destination="@id/imgFragment" />
     </fragment>
     <fragment
         android:id="@+id/textEditionFragment"
         android:name="com.example.multimediachallenge.ui.TextFragment"
         android:label="fragment_text_edition"
-        tools:layout="@layout/fragment_text" />
+        tools:layout="@layout/fragment_text">
+        <argument
+            android:name="typeOfTextFragment"
+            app:argType="com.example.multimediachallenge.utils.TypeOfTextFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/imgFragment"
+        android:name="com.example.multimediachallenge.ui.ImgFragment"
+        android:label="fragment_img"
+        tools:layout="@layout/fragment_img" />
 </navigation>

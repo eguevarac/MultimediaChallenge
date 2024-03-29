@@ -12,6 +12,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.15" />
+
         <TextView
             android:id="@+id/tvSize"
             android:layout_width="wrap_content"
@@ -59,12 +66,11 @@
             android:id="@+id/etTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="56dp"
             android:background="@color/white"
             android:hint="@string/title"
             app:layout_constraintEnd_toEndOf="@id/etBody"
             app:layout_constraintStart_toStartOf="@id/etBody"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="@id/guideline" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etBody"
@@ -80,11 +86,22 @@
             app:layout_constraintTop_toBottomOf="@id/etTitle" />
 
         <Button
+            android:id="@+id/btnFindTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/findText"
+            android:layout_marginTop="@dimen/largeMargin"
+            app:layout_constraintTop_toBottomOf="@id/etBody"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
             android:id="@+id/btnAccept"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/save"
-            app:layout_constraintTop_toBottomOf="@id/etBody"
+            android:layout_marginTop="@dimen/commonMargin"
+            app:layout_constraintTop_toBottomOf="@id/btnFindTxt"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

@@ -1,21 +1,24 @@
 package com.example.multimediachallenge.ui
 
 import android.os.Bundle
-import android.text.Html
 import android.text.Spanned
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.core.text.HtmlCompat
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.navArgs
 import com.example.multimediachallenge.databinding.FragmentTextBinding
 import com.example.multimediachallenge.utils.TextManager
+import com.example.multimediachallenge.utils.TypeOfTextFragment
 
 
 class TextFragment : Fragment() {
 
     private lateinit var binding: FragmentTextBinding
+    private val args: TextFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -29,21 +32,49 @@ class TextFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupSpinner()
+        setupTypeOfFragment()
+    }
 
-        binding.btnAccept.setOnClickListener {
-
-            TextManager.addTextFileToStorage(
-                requireContext(),
-                binding.etTitle.text.toString(),
-                binding.etBody.text.toString()
-            )
-
-            binding.etBody.setText(binding.etBody.text.toString())
-
+    private fun setupTypeOfFragment() {
+        when (args.typeOfTextFragment) {
+            TypeOfTextFragment.TextCreation -> setupTextCreationOrEditionFragment()
+            TypeOfTextFragment.TextEdition -> setupTextCreationOrEditionFragment()
+            TypeOfTextFragment.TextReader -> setupTextReaderFragment()
         }
-        binding.chbBold.setOnCheckedChangeListener { _, _ -> setTextWithConditions() }
-        binding.chbItalic.setOnCheckedChangeListener { _, _ -> setTextWithConditions() }
+    }
+
+
+    private fun setupTextReaderFragment() {
+        with(binding) {
+            btnAccept.visibility = View.GONE
+            chbBold.visibility = View.GONE
+            chbItalic.visibility = View.GONE
+            tvSize.visibility = View.GONE
+            etTitle.isEnabled = false
+            etBody.isEnabled = false
+        }
+    }
+
+    private fun setupTextCreationOrEditionFragment() {
+        setupSpinner()
+        with(binding) {
+
+            if (args.typeOfTextFragment == TypeOfTextFragment.TextCreation) {
+                btnFindTxt.visibility = View.GONE
+            } else {
+                etTitle.isEnabled = false
+            }
+
+            btnAccept.setOnClickListener {
+                TextManager.addTextFileToStorage(
+                    requireContext(),
+                    etTitle.text.toString(),
+                    etBody.text.toString()
+                )
+            }
+            chbBold.setOnCheckedChangeListener { _, _ -> setTextWithConditions() }
+            chbItalic.setOnCheckedChangeListener { _, _ -> setTextWithConditions() }
+        }
     }
 
     private fun setTextWithConditions() {
@@ -55,24 +86,28 @@ class TextFragment : Fragment() {
 
             textToShow = "<b>$originText</b>"
             //textToShow = setFontSize(textToShow)
-            spanned = Html.fromHtml(textToShow)
+            //spanned = Html.fromHtml(textToShow)
+            spanned = HtmlCompat.fromHtml(textToShow, HtmlCompat.FROM_HTML_MODE_LEGACY)
 
         } else if (binding.chbBold.isChecked && binding.chbItalic.isChecked) {
 
             textToShow = "<em><b>$originText</b></em>"
             //textToShow = setFontSize(textToShow)
-            spanned = Html.fromHtml(textToShow)
+            //spanned = Html.fromHtml(textToShow)
+            spanned = HtmlCompat.fromHtml(textToShow, HtmlCompat.FROM_HTML_MODE_LEGACY)
 
         } else if (!binding.chbBold.isChecked && binding.chbItalic.isChecked) {
 
             textToShow = "<em>$originText</em>"
             //textToShow = setFontSize(textToShow)
-            spanned = Html.fromHtml(textToShow)
+            //spanned = Html.fromHtml(textToShow)
+            spanned = HtmlCompat.fromHtml(textToShow, HtmlCompat.FROM_HTML_MODE_LEGACY)
 
         } else if (!binding.chbBold.isChecked && !binding.chbItalic.isChecked) {
 
             //textToShow = setFontSize(originText)
-            spanned = Html.fromHtml(originText)
+            //spanned = Html.fromHtml(originText)
+            spanned = HtmlCompat.fromHtml(originText, HtmlCompat.FROM_HTML_MODE_LEGACY)
         }
 
         binding.etBody.setText(spanned)
@@ -83,34 +118,43 @@ class TextFragment : Fragment() {
     }
 
     private fun setFontSize() {
-
-        when (binding.spinner.selectedItem) {
-            "14" -> {
-                binding.etBody.textSize = 14f
-            }
-
-            "16" -> {
-                binding.etBody.textSize = 16f
-            }
-
-            "18" -> {
-                binding.etBody.textSize = 18f
-            }
-
-            "20" -> {
-                binding.etBody.textSize = 20f
-            }
-
-            "22" -> {
-                binding.etBody.textSize = 22f
-            }
-
-            else -> {
-                binding.etBody.textSize = 12f
+        with(binding) {
+            when (spinner.selectedItem) {
+                "14" -> etBody.textSize = 14f
+                "16" -> etBody.textSize = 16f
+                "18" -> etBody.textSize = 18f
+                "20" -> etBody.textSize = 20f
+                "22" -> etBody.textSize = 22f
+                "24" -> etBody.textSize = 24f
             }
         }
     }
-    /*private fun setFontSize(textToResize: String): String {
+
+    private fun setupSpinner() {
+        val spinnerOptions = listOf("14", "16", "18", "20", "22", "24")
+        val adapter =
+            ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, spinnerOptions)
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        binding.spinner.adapter = adapter
+
+        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                setTextWithConditions()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>?) {
+                setTextWithConditions()
+            }
+        }
+    }
+}
+
+/*private fun setFontSize(textToResize: String): String {
         var textToShow: String?
         when (binding.spinner.selectedItem) {
             "h1" -> {
@@ -139,27 +183,3 @@ class TextFragment : Fragment() {
         }
         return textToShow
     }*/
-
-    private fun setupSpinner() {
-        val spinnerOptions = listOf("14", "16", "18", "20", "22", "24")
-        val adapter =
-            ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, spinnerOptions)
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        binding.spinner.adapter = adapter
-
-        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                setTextWithConditions()
-            }
-
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-                setTextWithConditions()
-            }
-        }
-    }
-}

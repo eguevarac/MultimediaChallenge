@@ -14,11 +14,12 @@ import androidx.navigation.fragment.findNavController
 import com.example.multimediachallenge.databinding.FragmentMainBinding
 import com.example.multimediachallenge.utils.AudioRecordingManager
 import com.example.multimediachallenge.utils.CameraManager
+import com.example.multimediachallenge.utils.TypeOfTextFragment
 
 
 class MainFragment : Fragment() {
 
-    private lateinit var binding : FragmentMainBinding
+    private lateinit var binding: FragmentMainBinding
 
     private val contractCameraForPictures: ActivityResultLauncher<Uri> =
         registerForActivityResult(ActivityResultContracts.TakePicture()) { userClickSave ->
@@ -61,7 +62,13 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         with(binding) {
-            btnCaptureText.setOnClickListener { findNavController().navigate(MainFragmentDirections.actionMainFragmentToTextEditionFragment()) }
+            btnCaptureText.setOnClickListener {
+                findNavController().navigate(
+                    MainFragmentDirections.actionMainFragmentToTextEditionFragment(
+                        TypeOfTextFragment.TextCreation
+                    )
+                )
+            }
             btnCaptureSound.setOnClickListener {
                 AudioRecordingManager.startAudioRecording(
                     requireContext(),
@@ -82,19 +89,35 @@ class MainFragment : Fragment() {
                 )
             }
 
-            btnVisualizationText.setOnClickListener { }
+            btnVisualizationText.setOnClickListener {
+                findNavController().navigate(
+                    MainFragmentDirections.actionMainFragmentToTextEditionFragment(
+                        TypeOfTextFragment.TextReader
+                    )
+                )
+            }
             btnVisualizationSound.setOnClickListener { }
-            btnVisualizationImg.setOnClickListener { }
+            btnVisualizationImg.setOnClickListener {
+                findNavController().navigate(
+                    MainFragmentDirections.actionMainFragmentToImgFragment()
+                )
+            }
             btnVisualizationVideo.setOnClickListener { }
 
-            btnEditionText.setOnClickListener { }
+            btnEditionText.setOnClickListener {
+                findNavController().navigate(
+                    MainFragmentDirections.actionMainFragmentToTextEditionFragment(
+                        TypeOfTextFragment.TextEdition
+                    )
+                )
+            }
             btnEditionSound.setOnClickListener { }
-            btnEditionImg.setOnClickListener {  }
-            btnEditionVideo.setOnClickListener {  }
+            btnEditionImg.setOnClickListener { }
+            btnEditionVideo.setOnClickListener { }
 
-            btnWhatsApp.setOnClickListener {  }
-            btnMaps.setOnClickListener {  }
-            btnChrome.setOnClickListener {  }
+            btnWhatsApp.setOnClickListener { }
+            btnMaps.setOnClickListener { }
+            btnChrome.setOnClickListener { }
         }
     }
 }
