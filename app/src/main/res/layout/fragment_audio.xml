@@ -7,37 +7,19 @@
     tools:context=".ui.AudioFragment"
     android:background="@drawable/background_card_capture">
 
-
-
-    <ImageButton
-        android:id="@+id/btnPlay"
-        android:layout_width="92dp"
-        android:layout_height="92dp"
-        android:src="@drawable/ic_play_circle"
-        android:background="@color/transparent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btnStop"
-        app:layout_constraintBottom_toBottomOf="parent" />
-
-    <ImageButton
-        android:id="@+id/btnStop"
-        android:layout_width="92dp"
-        android:layout_height="92dp"
-        android:src="@drawable/ic_stop_circle"
-        android:background="@color/transparent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btnPlay"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+    <View
+        android:id="@+id/mediaController"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <Button
-        android:id="@+id/btnSave"
+        android:id="@+id/btnFind"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/saveAudio"
+        android:text="@string/findAudio"
         android:layout_marginTop="@dimen/largeMargin"
-        app:layout_constraintTop_toBottomOf="@id/btnPlay"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

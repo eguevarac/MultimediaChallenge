@@ -68,7 +68,11 @@ class MainFragment : Fragment() {
                 )
             }
 
-            btnVisualizationSound.setOnClickListener { }
+            btnVisualizationSound.setOnClickListener {
+                findNavController().navigate(
+                    MainFragmentDirections.actionMainFragmentToAudioFragment()
+                )
+            }
 
             btnVisualizationImg.setOnClickListener {
                 findNavController().navigate(

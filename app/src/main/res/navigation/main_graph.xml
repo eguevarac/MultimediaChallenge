@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_mainFragment_to_videoFragment"
             app:destination="@id/videoFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_audioFragment"
+            app:destination="@id/audioFragment" />
     </fragment>
     <fragment
         android:id="@+id/textEditionFragment"
@@ -39,4 +42,9 @@
         android:name="com.example.multimediachallenge.ui.VideoFragment"
         android:label="fragment_video"
         tools:layout="@layout/fragment_video" />
+    <fragment
+        android:id="@+id/audioFragment"
+        android:name="com.example.multimediachallenge.ui.AudioFragment"
+        android:label="fragment_audio"
+        tools:layout="@layout/fragment_audio" />
 </navigation>
