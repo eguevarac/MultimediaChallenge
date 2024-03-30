@@ -46,22 +46,6 @@ class MainFragment : Fragment() {
             }
         }
 
-    /*private val recordAudioIntent = Intent().apply {
-        action = "com.sec.android.app.voicenote.action.RECORD_NEW_SOUND"
-        flags = Intent.FLAG_ACTIVITY_NEW_TASK
-    }
-
-    private val contractRecordAudio: ActivityResultLauncher<Intent> =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                // Aquí puedes manejar el resultado de la grabación de audio
-                val data: Intent? = result.data
-                // Procesar los datos si es necesario
-            } else {
-                // Si la acción se cancela o falla, aquí puedes manejarlo
-            }
-        }*/
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -82,11 +66,6 @@ class MainFragment : Fragment() {
                 )
             }
             btnCaptureSound.setOnClickListener {
-                /*AudioRecordingManager.startAudioRecording(
-                    requireContext(),
-                    contractRecordAudio,
-                    recordAudioIntent
-                )*/
                 findNavController().navigate(
                     MainFragmentDirections.actionMainFragmentToRecorderFragment()
                 )
