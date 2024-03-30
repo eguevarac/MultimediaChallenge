@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.example.multimediachallenge.R
 import com.example.multimediachallenge.databinding.FragmentTextBinding
-import com.example.multimediachallenge.utils.TextManager
+import com.example.multimediachallenge.utils.StorageManager
 import com.example.multimediachallenge.utils.TypeOfTextFragment
 
 
@@ -78,7 +78,7 @@ class TextFragment : Fragment() {
             }
 
             btnAccept.setOnClickListener {
-                TextManager.addTextFileToStorage(
+                StorageManager.addTextFileToStorage(
                     requireContext(),
                     etTitle.text.toString(),
                     etBody.text.toString()
