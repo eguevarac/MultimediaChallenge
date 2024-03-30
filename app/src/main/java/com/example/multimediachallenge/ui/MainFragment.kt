@@ -180,7 +180,7 @@ class MainFragment : Fragment() {
                 val data: Intent? = result.data
 
             } else {
-                // TODO: algo no va bien aquí 
+                // TODO: algo no va bien aquí
                 //Toast.makeText(requireContext(),"Ha cancelado", Toast.LENGTH_SHORT).show()
             }
         }

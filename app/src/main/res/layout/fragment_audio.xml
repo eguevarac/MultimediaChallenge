@@ -4,19 +4,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.RecorderFragment"
+    tools:context=".ui.AudioFragment"
     android:background="@drawable/background_card_capture">
 
-    <ImageButton
-        android:id="@+id/btnRec"
-        android:layout_width="92dp"
-        android:layout_height="92dp"
-        android:src="@drawable/ic_record"
-        android:background="@color/transparent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btnPlay"
-        app:layout_constraintBottom_toBottomOf="parent" />
+
 
     <ImageButton
         android:id="@+id/btnPlay"
@@ -25,7 +16,7 @@
         android:src="@drawable/ic_play_circle"
         android:background="@color/transparent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btnRec"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toStartOf="@id/btnStop"
         app:layout_constraintBottom_toBottomOf="parent" />
 
@@ -46,7 +37,7 @@
         android:layout_height="wrap_content"
         android:text="@string/saveAudio"
         android:layout_marginTop="@dimen/largeMargin"
-        app:layout_constraintTop_toBottomOf="@id/btnRec"
+        app:layout_constraintTop_toBottomOf="@id/btnPlay"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
