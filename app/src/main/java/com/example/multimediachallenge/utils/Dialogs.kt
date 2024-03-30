@@ -6,16 +6,18 @@ import android.widget.EditText
 
 object Dialogs {
 
-    fun nameToFileDialog(context: Context, title: String, isPicture: Boolean) {
+    fun nameToFileDialog(context: Context, title: String, typeFile: TypeFile) {
         val editText = EditText(context)
         val alertDialog = AlertDialog.Builder(context)
             .setTitle(title)
             .setView(editText)
             .setPositiveButton("Aceptar") { dialog, _ ->
-                if (isPicture) {
+                if (typeFile == TypeFile.Picture) {
                     StorageManager.addImageToGallery(context, editText.text.toString())
-                } else {
+                } else if (typeFile == TypeFile.Video) {
                     StorageManager.addVideoToStorage(context, editText.text.toString())
+                } else if (typeFile == TypeFile.Audio) {
+                    // TODO: tengo que hacer aquí lo de guardar el audio
                 }
                 dialog.dismiss()
             }
