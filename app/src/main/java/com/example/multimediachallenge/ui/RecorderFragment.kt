@@ -15,7 +15,21 @@ import com.example.multimediachallenge.databinding.FragmentRecorderBinding
 class RecorderFragment : Fragment() {
 
     private lateinit var binding: FragmentRecorderBinding
-    private lateinit var recorder: MediaRecorder
+    private val requestRecorderPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (isGranted) {
+                // TODO: aquí hay que hacer las cositas
+
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    "Permisos denegados por el usuario",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+
+    private var recorder: MediaRecorder? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -31,20 +45,6 @@ class RecorderFragment : Fragment() {
     }
 
     private fun checkRecorderPermission() {
-        val requestRecorderPermissionLauncher =
-            registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-                if (isGranted) {
-                    // TODO: aquí hay que hacer las cositas
-                    Toast.makeText(requireContext(), "Permisos aceptado", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(
-                        requireContext(),
-                        "Permisos denegados por el usuario",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestRecorderPermissionLauncher.launch(Manifest.permission.RECORD_AUDIO)
         } else {

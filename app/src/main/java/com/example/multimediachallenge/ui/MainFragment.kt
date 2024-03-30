@@ -14,7 +14,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.multimediachallenge.databinding.FragmentMainBinding
-import com.example.multimediachallenge.utils.CameraManager
+import com.example.multimediachallenge.utils.Dialogs
+import com.example.multimediachallenge.utils.StorageManager
 import com.example.multimediachallenge.utils.TypeOfTextFragment
 
 
@@ -26,13 +27,21 @@ class MainFragment : Fragment() {
     private val contractCameraForPictures: ActivityResultLauncher<Uri> =
         registerForActivityResult(ActivityResultContracts.TakePicture()) { userClickSave ->
             if (userClickSave) {
-                CameraManager.nameToFileDialog(requireContext(), "Ponle nombre a la foto", true)
+                Dialogs.nameToFileDialog(
+                    requireContext(),
+                    "Ponle nombre a la foto",
+                    true
+                )
             }
         }
     private val contractCameraForVideos: ActivityResultLauncher<Uri> =
         registerForActivityResult(ActivityResultContracts.CaptureVideo()) { userClickSave ->
             if (userClickSave) {
-                CameraManager.nameToFileDialog(requireContext(), "Ponle nombre al vídeo", false)
+                Dialogs.nameToFileDialog(
+                    requireContext(),
+                    "Ponle nombre al vídeo",
+                    false
+                )
             }
         }
 
@@ -126,15 +135,17 @@ class MainFragment : Fragment() {
 
     private fun launchPictureOrVideoContract() {
         if (!isCameraToVideo) {
-            CameraManager.startContract(
+            contractCameraForPictures.launch(StorageManager.createAuxUri(requireContext()))
+            /*CameraManager.startContract(
                 requireContext(),
                 contractCameraForPictures
-            )
+            )*/
         } else {
-            CameraManager.startContract(
+            contractCameraForVideos.launch(StorageManager.createAuxUri(requireContext()))
+            /*CameraManager.startContract(
                 requireContext(),
                 contractCameraForVideos
-            )
+            )*/
         }
     }
 }
