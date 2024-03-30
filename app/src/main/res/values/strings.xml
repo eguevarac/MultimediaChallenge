@@ -26,4 +26,5 @@
     <string name="findImgAtGallery">Buscar imagen en la galería</string>
     <string name="findText">Buscar texto</string>
     <string name="findVideoAtGallery">Buscar vídeo en la galería</string>
+    <string name="saveAudio">Guardar audio</string>
 </resources>

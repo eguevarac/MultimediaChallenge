@@ -1,18 +1,19 @@
 package com.example.multimediachallenge.ui
 
-import android.app.Activity
-import android.content.Intent
+import android.Manifest
 import android.net.Uri
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.multimediachallenge.databinding.FragmentMainBinding
-import com.example.multimediachallenge.utils.AudioRecordingManager
 import com.example.multimediachallenge.utils.CameraManager
 import com.example.multimediachallenge.utils.TypeOfTextFragment
 
@@ -20,6 +21,7 @@ import com.example.multimediachallenge.utils.TypeOfTextFragment
 class MainFragment : Fragment() {
 
     private lateinit var binding: FragmentMainBinding
+    private var isCameraToVideo = false
 
     private val contractCameraForPictures: ActivityResultLauncher<Uri> =
         registerForActivityResult(ActivityResultContracts.TakePicture()) { userClickSave ->
@@ -34,7 +36,17 @@ class MainFragment : Fragment() {
             }
         }
 
-    private val recordAudioIntent = Intent().apply {
+    private val requestCameraPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (isGranted) {
+                launchPictureOrVideoContract()
+            } else {
+                Toast.makeText(requireContext(), "No has aceptado los permisos", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
+
+    /*private val recordAudioIntent = Intent().apply {
         action = "com.sec.android.app.voicenote.action.RECORD_NEW_SOUND"
         flags = Intent.FLAG_ACTIVITY_NEW_TASK
     }
@@ -48,7 +60,7 @@ class MainFragment : Fragment() {
             } else {
                 // Si la acción se cancela o falla, aquí puedes manejarlo
             }
-        }
+        }*/
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -70,23 +82,23 @@ class MainFragment : Fragment() {
                 )
             }
             btnCaptureSound.setOnClickListener {
-                AudioRecordingManager.startAudioRecording(
+                /*AudioRecordingManager.startAudioRecording(
                     requireContext(),
                     contractRecordAudio,
                     recordAudioIntent
+                )*/
+                findNavController().navigate(
+                    MainFragmentDirections.actionMainFragmentToRecorderFragment()
                 )
             }
             btnCaptureImg.setOnClickListener {
-                CameraManager.startContract(
-                    requireContext(),
-                    contractCameraForPictures
-                )
+                isCameraToVideo = false
+                Log.i(">", "Va a entrar en la función")
+                checkCameraPermissions()
             }
             btnCaptureVideo.setOnClickListener {
-                CameraManager.startContract(
-                    requireContext(),
-                    contractCameraForVideos
-                )
+                isCameraToVideo = true
+                checkCameraPermissions()
             }
 
             btnVisualizationText.setOnClickListener {
@@ -122,6 +134,28 @@ class MainFragment : Fragment() {
             btnWhatsApp.setOnClickListener { }
             btnMaps.setOnClickListener { }
             btnChrome.setOnClickListener { }
+        }
+    }
+
+    private fun checkCameraPermissions() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            requestCameraPermissionLauncher.launch(Manifest.permission.CAMERA)
+        } else {
+            launchPictureOrVideoContract()
+        }
+    }
+
+    private fun launchPictureOrVideoContract() {
+        if (!isCameraToVideo) {
+            CameraManager.startContract(
+                requireContext(),
+                contractCameraForPictures
+            )
+        } else {
+            CameraManager.startContract(
+                requireContext(),
+                contractCameraForVideos
+            )
         }
     }
 }

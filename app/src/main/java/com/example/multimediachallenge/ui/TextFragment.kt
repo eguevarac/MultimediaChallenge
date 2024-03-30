@@ -42,6 +42,7 @@ class TextFragment : Fragment() {
             TypeOfTextFragment.TextCreation -> setupTextCreationOrEditionFragment()
             TypeOfTextFragment.TextEdition -> setupTextCreationOrEditionFragment()
             TypeOfTextFragment.TextReader -> setupTextReaderFragment()
+            else -> setupTextReaderFragment()
         }
     }
 
