@@ -16,7 +16,6 @@ import com.example.multimediachallenge.databinding.FragmentTextBinding
 import com.example.multimediachallenge.utils.StorageManager
 import com.example.multimediachallenge.utils.TypeOfTextFragment
 
-
 class TextFragment : Fragment() {
 
     private lateinit var binding: FragmentTextBinding
@@ -42,7 +41,6 @@ class TextFragment : Fragment() {
             TypeOfTextFragment.TextCreation -> setupTextCreationOrEditionFragment()
             TypeOfTextFragment.TextEdition -> setupTextCreationOrEditionFragment()
             TypeOfTextFragment.TextReader -> setupTextReaderFragment()
-            else -> setupTextReaderFragment()
         }
     }
 
