@@ -1,6 +1,5 @@
 package com.example.multimediachallenge.ui
 
-import android.content.Intent
 import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
@@ -35,17 +34,14 @@ class AudioFragment : Fragment() {
                         override fun start() {
                             mediaPlayer.start()
                         }
-
                         override fun pause() {
                             mediaPlayer.pause()
                         }
-
                         override fun getDuration() = mediaPlayer.duration
                         override fun getCurrentPosition() = mediaPlayer.currentPosition
                         override fun seekTo(pos: Int) {
                             mediaPlayer.seekTo(pos)
                         }
-
                         override fun isPlaying() = mediaPlayer.isPlaying
                         override fun getBufferPercentage() = 0
                         override fun canPause(): Boolean = true
