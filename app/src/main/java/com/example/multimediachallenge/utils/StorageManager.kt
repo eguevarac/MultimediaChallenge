@@ -127,6 +127,7 @@ object StorageManager {
         context.applicationContext.contentResolver.also { resolver ->
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                
                 finalUri = resolver.insert(
                     MediaStore.Downloads.getContentUri(MediaStore.VOLUME_EXTERNAL),
                     content
@@ -139,6 +140,10 @@ object StorageManager {
                     val downloadsDirectory =
                         Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
                     val file = File(downloadsDirectory, fileName)
+
+                    if (file.exists()) {
+                        file.delete()
+                    }
                     fileOutputStream = FileOutputStream(file)
                     fileOutputStream!!.write(fileContent.toByteArray())
 

@@ -58,6 +58,21 @@ class TextFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupTypeOfFragment()
+
+        setupListeners()
+    }
+
+    private fun setupListeners() {
+        with(binding) {
+            btnAccept.setOnClickListener {
+                checkIfPossibleAndSave()
+            }
+            chbBold.setOnCheckedChangeListener { _, _ -> setTextWithConditions() }
+            chbItalic.setOnCheckedChangeListener { _, _ -> setTextWithConditions() }
+            btnFindTxt.setOnClickListener {
+                contractGallery.launch("text/plain")
+            }
+        }
     }
 
     private fun setupTypeOfFragment() {
@@ -80,28 +95,12 @@ class TextFragment : Fragment() {
             tvSize.visibility = View.GONE
             etTitle.isEnabled = false
             etBody.isEnabled = false
-
-            btnFindTxt.setOnClickListener {
-                contractGallery.launch("text/plain")
-            }
         }
     }
 
     private fun setupTextCreationOrEditionFragment() {
         setupSpinner()
 
-        setupLayoutDependingOnType()
-
-        with(binding) {
-            btnAccept.setOnClickListener {
-                checkIfPossibleAndSave()
-            }
-            chbBold.setOnCheckedChangeListener { _, _ -> setTextWithConditions() }
-            chbItalic.setOnCheckedChangeListener { _, _ -> setTextWithConditions() }
-        }
-    }
-
-    private fun setupLayoutDependingOnType() {
         if (args.typeOfTextFragment == TypeOfTextFragment.TextCreation) {
             binding.btnFindTxt.visibility = View.GONE
             binding.root.background =
@@ -112,6 +111,8 @@ class TextFragment : Fragment() {
             binding.root.background =
                 ContextCompat.getDrawable(requireContext(), R.drawable.background_card_edition)
         }
+
+
     }
 
     private fun checkIfPossibleAndSave() {
