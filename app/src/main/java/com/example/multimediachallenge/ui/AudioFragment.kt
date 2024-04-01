@@ -13,13 +13,13 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.example.multimediachallenge.databinding.FragmentAudioBinding
-import com.example.multimediachallenge.utils.FixedMediaController
 
 class AudioFragment : Fragment() {
 
     private lateinit var binding: FragmentAudioBinding
     private lateinit var mediaPlayer: MediaPlayer
     private lateinit var mediaController: MediaController
+    private var isPlayingSound = false
 
 
     override fun onCreateView(
@@ -34,6 +34,11 @@ class AudioFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding.btnFind.setOnClickListener {
             checkReadMediaAudioPermission()
+        }
+        binding.vMediaController.setOnClickListener {
+            if (isPlayingSound) {
+                mediaController.show()
+            }
         }
     }
 
@@ -61,12 +66,14 @@ class AudioFragment : Fragment() {
             }
         }
 
+
     //Contracts -----------------------------------------------------------------
     private val contractAudioStorage =
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
             if (uri != null) {
                 try {
                     loadAudio(uri)
+                    isPlayingSound = true
 
                 } catch (e: Exception) {
                     Toast.makeText(
@@ -85,7 +92,7 @@ class AudioFragment : Fragment() {
         } else {
             MediaPlayer()
         }
-        mediaController = FixedMediaController(requireContext())
+        mediaController = MediaController(requireContext())
 
         setupMediaController()
 
@@ -119,6 +126,6 @@ class AudioFragment : Fragment() {
             override fun getAudioSessionId() = mediaPlayer.audioSessionId
         })
 
-        mediaController.setAnchorView(binding.mediaController)
+        mediaController.setAnchorView(binding.vMediaController)
     }
 }

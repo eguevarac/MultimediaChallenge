@@ -1,6 +1,5 @@
 package com.example.multimediachallenge.ui
 
-import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
@@ -15,9 +14,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            supportActionBar?.setBackgroundDrawable(getDrawable(R.drawable.gradient_background))
-        }
+        supportActionBar?.setBackgroundDrawable(getDrawable(R.drawable.gradient_background))
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

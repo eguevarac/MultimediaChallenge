@@ -28,4 +28,39 @@ object Dialogs {
             .create()
         alertDialog.show()
     }
+
+    fun queryToWikipediaDialog(context: Context) {
+        val editText = EditText(context)
+        val alertDialog = AlertDialog.Builder(context)
+            .setTitle("Qué quieres buscar en wikipedia?")
+            .setView(editText)
+            .setPositiveButton("Aceptar") { dialog, _ ->
+                ExternalAppsManager.lookingForInformationAtWikipedia(
+                    context,
+                    editText.text.toString()
+                )
+                dialog.dismiss()
+            }
+            .setNegativeButton("Cancelar") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .create()
+        alertDialog.show()
+    }
+
+    fun queryToMapsDialog(context: Context) {
+        val editText = EditText(context)
+        val alertDialog = AlertDialog.Builder(context)
+            .setTitle("Qué dirección quieres busacr en maps?")
+            .setView(editText)
+            .setPositiveButton("Aceptar") { dialog, _ ->
+                ExternalAppsManager.lookingForAddressAtMaps(context, editText.text.toString())
+                dialog.dismiss()
+            }
+            .setNegativeButton("Cancelar") { dialog, _ ->
+                dialog.dismiss()
+            }
+            .create()
+        alertDialog.show()
+    }
 }

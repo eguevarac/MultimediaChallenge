@@ -11,7 +11,6 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.example.multimediachallenge.databinding.FragmentVideoBinding
-import com.example.multimediachallenge.utils.FixedMediaController
 
 
 class VideoFragment : Fragment() {
@@ -64,9 +63,8 @@ class VideoFragment : Fragment() {
         registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
             if (uri != null) {
                 binding.video.setVideoURI(uri)
-                mediaController = FixedMediaController(requireContext())
+                mediaController = MediaController(requireContext())
                 mediaController.setMediaPlayer(binding.video)
-                mediaController.show()
                 binding.video.setMediaController(mediaController)
                 binding.video.start()
 

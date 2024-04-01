@@ -98,9 +98,19 @@ class MainFragment : Fragment() {
             btnEditionImg.setOnClickListener { }
             btnEditionVideo.setOnClickListener { }
 
-            btnWhatsApp.setOnClickListener { }
-            btnMaps.setOnClickListener { }
-            btnChrome.setOnClickListener { }
+            btnWhatsApp.setOnClickListener {
+                val intent =
+                    requireContext().packageManager.getLaunchIntentForPackage("com.whatsapp")
+                if (intent != null) {
+                    startActivity(intent)
+                }
+            }
+            btnMaps.setOnClickListener {
+                Dialogs.queryToMapsDialog(requireContext())
+            }
+            btnChrome.setOnClickListener {
+                Dialogs.queryToWikipediaDialog(requireContext())
+            }
         }
     }
 
