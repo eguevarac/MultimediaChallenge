@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId = "com.example.multimediachallenge"
-        minSdk = 19
+        minSdk = 21
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -47,6 +47,9 @@ dependencies {
 
     val nav_version = "2.7.7"
 
+
+    //Para poder hacer crop a la imagen
+    implementation("com.vanniktech:android-image-cropper:4.5.0")
 
     //para google maps
     implementation("com.google.android.gms:play-services-maps:18.2.0")
