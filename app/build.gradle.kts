@@ -45,7 +45,7 @@ android {
 
 dependencies {
 
-    val nav_version = "2.7.7"
+    val navVersion = "2.7.7"
 
 
     //Para poder hacer crop a la imagen
@@ -62,8 +62,8 @@ dependencies {
     implementation("com.google.android.gms:play-services-location:21.1.0")
 
     //navComponent
-    implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
-    implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
+    implementation("androidx.navigation:navigation-fragment-ktx:$navVersion")
+    implementation("androidx.navigation:navigation-ui-ktx:$navVersion")
 
 
     //las que vienen de serie

@@ -1,6 +1,8 @@
 package com.example.multimediachallenge.ui
 
+import android.Manifest
 import android.graphics.Bitmap
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -18,29 +20,6 @@ class ImgFragment : Fragment() {
 
     private lateinit var binding: FragmentImgBinding
 
-    private val contractGallery =
-        registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
-            if (uri != null) {
-                cropImage.launch(
-                    CropImageContractOptions(
-                        uri, CropImageOptions(
-                            guidelines = CropImageView.Guidelines.ON,
-                            outputCompressFormat = Bitmap.CompressFormat.PNG
-                        )
-                    )
-                )
-            }
-        }
-
-    private val cropImage = registerForActivityResult(CropImageContract()) { result ->
-        if (result.isSuccessful) {
-            binding.img.setImageURI(result.uriContent)
-        } else {
-            Toast.makeText(requireContext(), result.error.toString(), Toast.LENGTH_SHORT).show()
-        }
-    }
-
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -53,7 +32,51 @@ class ImgFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnFindImg.setOnClickListener {
+            checkReadMediaImagesPermission()
+        }
+    }
+
+    //Permissions -----------------------------------------------------------------
+    private fun checkReadMediaImagesPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                requestReadMediaImagesPermissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES)
+            } else {
+                requestReadMediaImagesPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+            }
+        } else {
             contractGallery.launch("image/*")
+        }
+    }
+
+    private val requestReadMediaImagesPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (isGranted) {
+                contractGallery.launch("image/*")
+            } else {
+                Toast.makeText(requireContext(), "No has aceptado los permisos", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
+
+    //Contracts -----------------------------------------------------------------
+    private val contractGallery =
+        registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+            if (uri != null) {
+                contractCropImage.launch(
+                    CropImageContractOptions(
+                        uri, CropImageOptions(
+                            guidelines = CropImageView.Guidelines.ON,
+                            outputCompressFormat = Bitmap.CompressFormat.PNG
+                        )
+                    )
+                )
+            }
+        }
+
+    private val contractCropImage = registerForActivityResult(CropImageContract()) { result ->
+        if (result.isSuccessful) {
+            binding.img.setImageURI(result.uriContent)
         }
     }
 }

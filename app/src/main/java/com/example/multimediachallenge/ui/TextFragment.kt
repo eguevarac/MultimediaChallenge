@@ -20,7 +20,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.multimediachallenge.R
 import com.example.multimediachallenge.databinding.FragmentTextBinding
 import com.example.multimediachallenge.utils.StorageManager
-import com.example.multimediachallenge.utils.TypeOfTextFragment
+import com.example.multimediachallenge.utils.enums.TypeOfTextFragment
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
@@ -229,7 +229,7 @@ class TextFragment : Fragment() {
         return stringBuilder.toString()
     }
 
-    fun getFileNameFromUri(context: Context, uri: Uri): String? {
+    private fun getFileNameFromUri(context: Context, uri: Uri): String? {
         var fileName: String? = null
         val contentResolver = context.contentResolver
 

@@ -17,8 +17,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.multimediachallenge.databinding.FragmentMainBinding
 import com.example.multimediachallenge.utils.Dialogs
 import com.example.multimediachallenge.utils.StorageManager
-import com.example.multimediachallenge.utils.TypeFile
-import com.example.multimediachallenge.utils.TypeOfTextFragment
+import com.example.multimediachallenge.utils.enums.TypeFile
+import com.example.multimediachallenge.utils.enums.TypeOfTextFragment
 
 
 class MainFragment : Fragment() {

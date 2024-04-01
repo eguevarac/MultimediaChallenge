@@ -3,6 +3,7 @@ package com.example.multimediachallenge.utils
 import android.app.AlertDialog
 import android.content.Context
 import android.widget.EditText
+import com.example.multimediachallenge.utils.enums.TypeFile
 
 object Dialogs {
 

@@ -1,4 +1,4 @@
-package com.example.multimediachallenge.utils
+package com.example.multimediachallenge.utils.enums
 
 enum class TypeOfTextFragment {
     TextCreation,

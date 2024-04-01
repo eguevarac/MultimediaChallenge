@@ -30,7 +30,7 @@
         tools:layout="@layout/fragment_text">
         <argument
             android:name="typeOfTextFragment"
-            app:argType="com.example.multimediachallenge.utils.TypeOfTextFragment" />
+            app:argType="com.example.multimediachallenge.utils.enums.TypeOfTextFragment" />
     </fragment>
     <fragment
         android:id="@+id/imgFragment"
