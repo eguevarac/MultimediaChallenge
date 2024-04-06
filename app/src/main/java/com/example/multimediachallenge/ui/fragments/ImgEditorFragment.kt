@@ -12,14 +12,17 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.multimediachallenge.data.Constants
 import com.example.multimediachallenge.databinding.FragmentImgEditorBinding
 import ja.burhanrashid52.photoeditor.PhotoEditor
 import ja.burhanrashid52.photoeditor.PhotoEditor.Builder
+import ja.burhanrashid52.photoeditor.PhotoFilter
 import kotlinx.coroutines.launch
 import java.io.File
 
 
-class ImgEditorFragment : Fragment() {
+class ImgEditorFragment : Fragment(), FiltersAdapter.FilterListener {
 
     private lateinit var binding: FragmentImgEditorBinding
     private lateinit var photoEditor: PhotoEditor
@@ -37,6 +40,7 @@ class ImgEditorFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupPhotoEditor()
+        setupAdapter()
 
         with(binding) {
             photoEditorView.source.setImageURI(args.imgToEdit.uri)
@@ -62,19 +66,20 @@ class ImgEditorFragment : Fragment() {
 
             chbFilter.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
-                    showFilters()
+                    binding.recyclerView.visibility = View.VISIBLE
                 } else {
-                    // TODO: hideFilters
+                    binding.recyclerView.visibility = View.GONE
                 }
             }
         }
     }
 
-    private fun showFilters() {
-        // TODO: sólo queda el filtro y santas pascuas
-        /*photoEditor.apply {
-        setFilterEffect(PhotoFilter.VIGNETTE)
-    }*/
+
+    private fun setupAdapter() {
+        val adapter = FiltersAdapter(Constants.filters, this)
+        binding.recyclerView.setHasFixedSize(true)
+        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerView.adapter = adapter
     }
 
     private fun saveImg() {
@@ -124,5 +129,30 @@ class ImgEditorFragment : Fragment() {
             .setClipSourceImage(true)
             .setDefaultTextTypeface(defaultTypeface)
             .build()
+    }
+
+    override fun onFilterClick(filterName: String) {
+        when (filterName) {
+            "cancel" -> photoEditor.setFilterEffect(PhotoFilter.NONE)
+            "autoFix" -> photoEditor.setFilterEffect(PhotoFilter.AUTO_FIX)
+            "blackWhite" -> photoEditor.setFilterEffect(PhotoFilter.BLACK_WHITE)
+            "brightness" -> photoEditor.setFilterEffect(PhotoFilter.BRIGHTNESS)
+            "contrast" -> photoEditor.setFilterEffect(PhotoFilter.CONTRAST)
+            "crossProcess" -> photoEditor.setFilterEffect(PhotoFilter.CROSS_PROCESS)
+            "documentary" -> photoEditor.setFilterEffect(PhotoFilter.DOCUMENTARY)
+            "fillLight" -> photoEditor.setFilterEffect(PhotoFilter.FILL_LIGHT)
+            "fishEye" -> photoEditor.setFilterEffect(PhotoFilter.FISH_EYE)
+            "grain" -> photoEditor.setFilterEffect(PhotoFilter.GRAIN)
+            "grayScale" -> photoEditor.setFilterEffect(PhotoFilter.GRAY_SCALE)
+            "lomish" -> photoEditor.setFilterEffect(PhotoFilter.LOMISH)
+            "negative" -> photoEditor.setFilterEffect(PhotoFilter.NEGATIVE)
+            "posterize" -> photoEditor.setFilterEffect(PhotoFilter.POSTERIZE)
+            "saturate" -> photoEditor.setFilterEffect(PhotoFilter.SATURATE)
+            "sepia" -> photoEditor.setFilterEffect(PhotoFilter.SEPIA)
+            "sharpen" -> photoEditor.setFilterEffect(PhotoFilter.SHARPEN)
+            "temperature" -> photoEditor.setFilterEffect(PhotoFilter.TEMPERATURE)
+            "tint" -> photoEditor.setFilterEffect(PhotoFilter.TINT)
+            "vignette" -> photoEditor.setFilterEffect(PhotoFilter.VIGNETTE)
+        }
     }
 }

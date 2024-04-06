@@ -73,7 +73,15 @@
             android:layout_marginStart="@dimen/largeMargin"
             android:background="@color/transparent"
             android:src="@drawable/ic_save" />
-
     </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="wrap_content"
+        android:background="@color/white"
+        android:visibility="gone"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        tools:listitem="@layout/item_filter" />
 
 </FrameLayout>
