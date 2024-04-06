@@ -3,8 +3,7 @@
     <style name="Base.Theme.MultimediaChallenge" parent="Theme.Material3.DayNight">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-        <item name="colorPrimary">#F392B9</item>
-        <item name="android:textColorPrimary">#A1052A</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="Theme.MultimediaChallenge" parent="Base.Theme.MultimediaChallenge" />

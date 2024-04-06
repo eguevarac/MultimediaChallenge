@@ -21,7 +21,7 @@
         <View
             android:id="@+id/vCapture"
             style="@style/card"
-            android:background="@drawable/background_card_capture"
+            android:background="@drawable/background_card"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +30,6 @@
             android:id="@+id/tvTitleCapture"
             style="@style/titleCard"
             android:text="@string/captureFiles"
-            android:textColor="#5FF3E5"
             app:layout_constraintEnd_toEndOf="@id/vCapture"
             app:layout_constraintStart_toStartOf="@id/vCapture"
             app:layout_constraintTop_toTopOf="@id/vCapture" />
@@ -78,7 +77,7 @@
         <View
             android:id="@+id/vVisualization"
             style="@style/card"
-            android:background="@drawable/background_card_visualization"
+            android:background="@drawable/background_card"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/vCapture" />
@@ -87,7 +86,6 @@
             android:id="@+id/tvTitleVisualization"
             style="@style/titleCard"
             android:text="@string/visualizationFiles"
-            android:textColor="#FFD1DE"
             app:layout_constraintEnd_toEndOf="@id/vVisualization"
             app:layout_constraintStart_toStartOf="@id/vVisualization"
             app:layout_constraintTop_toTopOf="@id/vVisualization" />
@@ -135,7 +133,7 @@
         <View
             android:id="@+id/vEdition"
             style="@style/card"
-            android:background="@drawable/background_card_edition"
+            android:background="@drawable/background_card"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/vVisualization" />
@@ -144,7 +142,6 @@
             android:id="@+id/tvTitleEdition"
             style="@style/titleCard"
             android:text="@string/editionFiles"
-            android:textColor="#58018F"
             app:layout_constraintEnd_toEndOf="@id/vEdition"
             app:layout_constraintStart_toStartOf="@id/vEdition"
             app:layout_constraintTop_toTopOf="@id/vEdition" />
@@ -193,7 +190,7 @@
             android:id="@+id/vOthers"
             style="@style/card"
             android:layout_height="@dimen/cardOthersHeight"
-            android:background="@drawable/background_card_others"
+            android:background="@drawable/background_card"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/vEdition" />
@@ -202,7 +199,6 @@
             android:id="@+id/tvTitleOthers"
             style="@style/titleCard"
             android:text="@string/others"
-            android:textColor="#F4E76C"
             app:layout_constraintEnd_toEndOf="@id/vOthers"
             app:layout_constraintStart_toStartOf="@id/vOthers"
             app:layout_constraintTop_toTopOf="@id/vOthers" />
