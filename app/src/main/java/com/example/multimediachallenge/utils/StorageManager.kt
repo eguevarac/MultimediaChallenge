@@ -172,7 +172,7 @@ object StorageManager {
 
         return FileProvider.getUriForFile(
             context,
-            "com.example.multimediachallenge.ui.MainFragment.FileProvider",
+            "com.example.multimediachallenge.ui.fragments.MainFragment.FileProvider",
             file
         )
     }

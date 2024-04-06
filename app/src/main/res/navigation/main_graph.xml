@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.multimediachallenge.ui.MainFragment"
+        android:name="com.example.multimediachallenge.ui.fragments.MainFragment"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main">
         <action
@@ -22,10 +22,13 @@
         <action
             android:id="@+id/action_mainFragment_to_audioFragment"
             app:destination="@id/audioFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_imgEditorFragment"
+            app:destination="@id/imgEditorFragment2" />
     </fragment>
     <fragment
         android:id="@+id/textEditionFragment"
-        android:name="com.example.multimediachallenge.ui.TextFragment"
+        android:name="com.example.multimediachallenge.ui.fragments.TextFragment"
         android:label="fragment_text_edition"
         tools:layout="@layout/fragment_text">
         <argument
@@ -34,17 +37,26 @@
     </fragment>
     <fragment
         android:id="@+id/imgFragment"
-        android:name="com.example.multimediachallenge.ui.ImgFragment"
+        android:name="com.example.multimediachallenge.ui.fragments.ImgFragment"
         android:label="fragment_img"
         tools:layout="@layout/fragment_img" />
     <fragment
         android:id="@+id/videoFragment"
-        android:name="com.example.multimediachallenge.ui.VideoFragment"
+        android:name="com.example.multimediachallenge.ui.fragments.VideoFragment"
         android:label="fragment_video"
         tools:layout="@layout/fragment_video" />
     <fragment
         android:id="@+id/audioFragment"
-        android:name="com.example.multimediachallenge.ui.AudioFragment"
+        android:name="com.example.multimediachallenge.ui.fragments.AudioFragment"
         android:label="fragment_audio"
         tools:layout="@layout/fragment_audio" />
+    <fragment
+        android:id="@+id/imgEditorFragment2"
+        android:name="com.example.multimediachallenge.ui.fragments.ImgEditorFragment"
+        android:label="fragment_img_editor"
+        tools:layout="@layout/fragment_img_editor">
+        <argument
+            android:name="imgToEdit"
+            app:argType="com.example.multimediachallenge.data.ImgToEdit" />
+    </fragment>
 </navigation>

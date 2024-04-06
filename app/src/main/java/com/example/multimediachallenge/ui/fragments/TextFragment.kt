@@ -1,4 +1,4 @@
-package com.example.multimediachallenge.ui
+package com.example.multimediachallenge.ui.fragments
 
 import android.content.Context
 import android.net.Uri

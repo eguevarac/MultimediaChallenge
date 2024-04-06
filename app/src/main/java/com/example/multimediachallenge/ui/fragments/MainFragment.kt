@@ -1,8 +1,9 @@
-package com.example.multimediachallenge.ui
+package com.example.multimediachallenge.ui.fragments
 
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
@@ -14,6 +15,11 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.canhub.cropper.CropImageContract
+import com.canhub.cropper.CropImageContractOptions
+import com.canhub.cropper.CropImageOptions
+import com.canhub.cropper.CropImageView
+import com.example.multimediachallenge.data.ImgToEdit
 import com.example.multimediachallenge.databinding.FragmentMainBinding
 import com.example.multimediachallenge.utils.Dialogs
 import com.example.multimediachallenge.utils.StorageManager
@@ -94,9 +100,23 @@ class MainFragment : Fragment() {
                 )
             }
 
-            btnEditionSound.setOnClickListener { }
-            btnEditionImg.setOnClickListener { }
-            btnEditionVideo.setOnClickListener { }
+            btnEditionSound.setOnClickListener {
+                Toast.makeText(
+                    requireContext(),
+                    "No se ha implementado esta funcionalidad",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            btnEditionImg.setOnClickListener {
+                checkReadMediaImagesPermission()
+            }
+            btnEditionVideo.setOnClickListener {
+                Toast.makeText(
+                    requireContext(),
+                    "No se ha implementado esta funcionalidad",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
 
             btnWhatsApp.setOnClickListener {
                 val intent =
@@ -120,18 +140,37 @@ class MainFragment : Fragment() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestRecorderPermissionLauncher.launch(Manifest.permission.CAMERA)
         } else {
-            val intent =
-                requireContext().packageManager.getLaunchIntentForPackage("com.sec.android.app.voicenote")
-            contractRecorder.launch(intent)
+            try {
+                val intent =
+                    requireContext().packageManager.getLaunchIntentForPackage("com.sec.android.app.voicenote")
+                contractRecorder.launch(intent)
+            } catch (e: Exception) {
+                Toast.makeText(
+                    requireContext(),
+                    "El dispositivo no dispone de la grabadora solicitada",
+                    Toast.LENGTH_SHORT
+                )
+                    .show()
+            }
+
         }
     }
 
     private val requestRecorderPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
             if (isGranted) {
-                val intent =
-                    requireContext().packageManager.getLaunchIntentForPackage("com.sec.android.app.voicenote")
-                contractRecorder.launch(intent)
+                try {
+                    val intent =
+                        requireContext().packageManager.getLaunchIntentForPackage("com.sec.android.app.voicenote")
+                    contractRecorder.launch(intent)
+                } catch (e: Exception) {
+                    Toast.makeText(
+                        requireContext(),
+                        "El dispositivo no dispone de la grabadora solicitada",
+                        Toast.LENGTH_SHORT
+                    )
+                        .show()
+                }
             } else {
                 Toast.makeText(requireContext(), "No has aceptado los permisos", Toast.LENGTH_SHORT)
                     .show()
@@ -156,8 +195,54 @@ class MainFragment : Fragment() {
             }
         }
 
+    private fun checkReadMediaImagesPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                requestReadMediaImagesPermissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES)
+            } else {
+                requestReadMediaImagesPermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+            }
+        } else {
+            contractGallery.launch("image/*")
+        }
+    }
+
+    private val requestReadMediaImagesPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (isGranted) {
+                contractGallery.launch("image/*")
+            } else {
+                Toast.makeText(requireContext(), "No has aceptado los permisos", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
+
 
     //Contracts -----------------------------------------------------------------
+    private val contractGallery =
+        registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+            if (uri != null) {
+                contractCropImage.launch(
+                    CropImageContractOptions(
+                        uri, CropImageOptions(
+                            guidelines = CropImageView.Guidelines.ON,
+                            outputCompressFormat = Bitmap.CompressFormat.PNG
+                        )
+                    )
+                )
+            }
+        }
+
+    private val contractCropImage = registerForActivityResult(CropImageContract()) { result ->
+        if (result.isSuccessful) {
+            findNavController().navigate(
+                MainFragmentDirections.actionMainFragmentToImgEditorFragment(
+                    ImgToEdit(result.uriContent!!)
+                )
+            )
+        }
+    }
+
     private fun launchPictureOrVideoContract() {
         if (!isCameraToVideo) {
             contractCameraForPictures.launch(StorageManager.createAuxUri(requireContext()))
@@ -194,8 +279,6 @@ class MainFragment : Fragment() {
                 val data: Intent? = result.data
 
             } else {
-                // TODO: algo no va bien aquí
-                //Toast.makeText(requireContext(),"Ha cancelado", Toast.LENGTH_SHORT).show()
             }
         }
 }

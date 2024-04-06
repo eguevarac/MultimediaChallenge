@@ -40,7 +40,7 @@
         android:theme="@style/Theme.MultimediaChallenge"
         tools:targetApi="31">
         <activity
-            android:name=".ui.MainActivity"
+            android:name=".ui.activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -49,7 +49,7 @@
             </intent-filter>
         </activity>
         <provider
-            android:authorities="com.example.multimediachallenge.ui.MainFragment.FileProvider"
+            android:authorities="com.example.multimediachallenge.ui.fragments.MainFragment.FileProvider"
             android:name="androidx.core.content.FileProvider"
             android:exported="false"
             android:grantUriPermissions="true">

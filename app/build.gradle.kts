@@ -48,6 +48,9 @@ dependencies {
     val navVersion = "2.7.7"
 
 
+    //librería para edición de imágenes
+    implementation("com.burhanrashid52:photoeditor:3.0.2")
+
     //Para poder hacer crop a la imagen
     implementation("com.vanniktech:android-image-cropper:4.5.0")
 
