@@ -128,6 +128,12 @@ class MainFragment : Fragment() {
                     requireContext().packageManager.getLaunchIntentForPackage("com.whatsapp")
                 if (intent != null) {
                     startActivity(intent)
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "El dispositivo no dispone de esta aplicación",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
             btnMaps.setOnClickListener {

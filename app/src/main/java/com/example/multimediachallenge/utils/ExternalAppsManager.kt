@@ -3,6 +3,7 @@ package com.example.multimediachallenge.utils
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.widget.Toast
 
 object ExternalAppsManager {
 
@@ -17,6 +18,12 @@ object ExternalAppsManager {
         }
         if (intent.resolveActivity(context.packageManager) != null) {
             context.startActivity(intent)
+        } else {
+            Toast.makeText(
+                context,
+                "El dispositivo no dispone de esta aplicación",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
@@ -29,6 +36,12 @@ object ExternalAppsManager {
 
         if (mapIntent.resolveActivity(context.packageManager) != null) {
             context.startActivity(mapIntent)
+        } else {
+            Toast.makeText(
+                context,
+                "El dispositivo no dispone de esta aplicación",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 }
