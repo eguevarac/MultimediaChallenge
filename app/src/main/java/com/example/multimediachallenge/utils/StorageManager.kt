@@ -22,12 +22,20 @@ object StorageManager {
     fun addImageToGallery(context: Context, fileName: String) {
         val content = createContentToPicture(fileName)
         val finalUri = savePicture(context, content)
-        clearContents(context, content, finalUri)
-        Toast.makeText(
-            context,
-            "Imagen añadida a la galería con éxito",
-            Toast.LENGTH_SHORT
-        ).show()
+        if (finalUri != null) {
+            clearContents(context, content, finalUri)
+            Toast.makeText(
+                context,
+                "Imagen añadida a la galería con éxito",
+                Toast.LENGTH_SHORT
+            ).show()
+        } else {
+            Toast.makeText(
+                context,
+                "No se ha podido generar la ruta para guardar el archivo",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 
     private fun createContentToPicture(fileName: String): ContentValues {
@@ -40,17 +48,22 @@ object StorageManager {
         }
     }
 
-    private fun savePicture(context: Context, content: ContentValues): Uri {
+    private fun savePicture(context: Context, content: ContentValues): Uri? {
         var outputStream: OutputStream?
         var finalUri: Uri?
-        context.applicationContext.contentResolver.also { resolver ->
-            finalUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, content)
-            outputStream = resolver.openOutputStream(finalUri!!)
+        try {
+            context.applicationContext.contentResolver.also { resolver ->
+                finalUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, content)
+                outputStream = resolver.openOutputStream(finalUri!!)
+            }
+            outputStream.use {
+                getBitmap(context).compress(Bitmap.CompressFormat.JPEG, 100, outputStream!!)
+            }
+        } catch (ex: Exception) {
+            finalUri = null
         }
-        outputStream.use {
-            getBitmap(context).compress(Bitmap.CompressFormat.JPEG, 100, outputStream!!)
-        }
-        return finalUri!!
+
+        return finalUri
     }
 
     private fun getBitmap(context: Context): Bitmap {
@@ -67,8 +80,17 @@ object StorageManager {
     fun addVideoToStorage(context: Context, fileName: String) {
         val content = createContentToVideo(fileName)
         val finalUri = saveVideo(context, content)
-        clearContents(context, content, finalUri)
-        Toast.makeText(context, "Vídeo añadido a la galería con éxito", Toast.LENGTH_SHORT).show()
+        if (finalUri != null) {
+            clearContents(context, content, finalUri)
+            Toast.makeText(context, "Vídeo añadido a la galería con éxito", Toast.LENGTH_SHORT)
+                .show()
+        } else {
+            Toast.makeText(
+                context,
+                "No se ha podido generar la ruta para guardar el archivo",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 
     private fun createContentToVideo(fileName: String): ContentValues {
@@ -81,20 +103,25 @@ object StorageManager {
         }
     }
 
-    private fun saveVideo(context: Context, content: ContentValues): Uri {
+    private fun saveVideo(context: Context, content: ContentValues): Uri? {
         var finalUri: Uri?
-        context.applicationContext.contentResolver.also { resolver ->
-            finalUri = resolver.insert(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, content)
-        }
-        val sourceInputStream = context.contentResolver.openInputStream(createAuxUri(context))
-        val destinationOutputStream = context.contentResolver.openOutputStream(finalUri!!)
-
-        sourceInputStream?.use { input ->
-            destinationOutputStream?.use { output ->
-                input.copyTo(output)
+        try {
+            context.applicationContext.contentResolver.also { resolver ->
+                finalUri = resolver.insert(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, content)
             }
+            val sourceInputStream = context.contentResolver.openInputStream(createAuxUri(context))
+            val destinationOutputStream = context.contentResolver.openOutputStream(finalUri!!)
+
+            sourceInputStream?.use { input ->
+                destinationOutputStream?.use { output ->
+                    input.copyTo(output)
+                }
+            }
+        } catch (ex: Exception) {
+            finalUri = null
         }
-        return finalUri!!
+
+        return finalUri
     }
     //Video storage -------------------------------------------------------------------
 
@@ -102,8 +129,16 @@ object StorageManager {
     fun addTextFileToStorage(context: Context, fileName: String, fileContent: String) {
         val content = createContentToTextFile(fileName)
         val finalUri = saveTextFile(context, content, fileContent, fileName)
-        clearContents(context, content, finalUri)
-        Toast.makeText(context, "Archivo de texto añadido con éxito", Toast.LENGTH_SHORT).show()
+        if (finalUri != null) {
+            clearContents(context, content, finalUri)
+            Toast.makeText(context, "Archivo de texto añadido con éxito", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(
+                context,
+                "No se ha podido generar la ruta para guardar el archivo",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
     }
 
     private fun createContentToTextFile(fileName: String): ContentValues {
@@ -121,13 +156,13 @@ object StorageManager {
         content: ContentValues,
         fileContent: String,
         fileName: String
-    ): Uri {
+    ): Uri? {
         var finalUri: Uri? = null
         var fileOutputStream: FileOutputStream? = null
         context.applicationContext.contentResolver.also { resolver ->
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                
+
                 finalUri = resolver.insert(
                     MediaStore.Downloads.getContentUri(MediaStore.VOLUME_EXTERNAL),
                     content
@@ -161,7 +196,7 @@ object StorageManager {
                 }
             }
         }
-        return finalUri!!
+        return finalUri
     }
     //Text storage -------------------------------------------------------------------
 

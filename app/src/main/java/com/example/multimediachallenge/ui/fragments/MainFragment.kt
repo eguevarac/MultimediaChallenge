@@ -43,6 +43,7 @@ class MainFragment : Fragment() {
 
         with(binding) {
             btnCaptureText.setOnClickListener {
+                checkWriteExternalStoragePermission()
                 findNavController().navigate(
                     MainFragmentDirections.actionMainFragmentToTextEditionFragment(
                         TypeOfTextFragment.TextCreation
@@ -51,15 +52,18 @@ class MainFragment : Fragment() {
             }
 
             btnCaptureSound.setOnClickListener {
+                checkWriteExternalStoragePermission()
                 checkRecorderPermission()
             }
 
             btnCaptureImg.setOnClickListener {
+                checkWriteExternalStoragePermission()
                 isCameraToVideo = false
                 checkCameraPermissions()
             }
 
             btnCaptureVideo.setOnClickListener {
+                checkWriteExternalStoragePermission()
                 isCameraToVideo = true
                 checkCameraPermissions()
             }
@@ -91,6 +95,7 @@ class MainFragment : Fragment() {
             }
 
             btnEditionText.setOnClickListener {
+                checkWriteExternalStoragePermission()
                 findNavController().navigate(
                     MainFragmentDirections.actionMainFragmentToTextEditionFragment(
                         TypeOfTextFragment.TextEdition
@@ -106,6 +111,7 @@ class MainFragment : Fragment() {
                 ).show()
             }
             btnEditionImg.setOnClickListener {
+                checkWriteExternalStoragePermission()
                 isCameraToVideo = false
                 checkReadMediaImagesPermission()
             }
@@ -135,6 +141,23 @@ class MainFragment : Fragment() {
 
 
     //Permissions -----------------------------------------------------------------
+    private fun checkWriteExternalStoragePermission() {
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2) {
+            requestWriteExternalStoragePermissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        }
+    }
+
+    private val requestWriteExternalStoragePermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (!isGranted) {
+                Toast.makeText(
+                    requireContext(),
+                    "No podrás guardar las capturas tomadas",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+
     private fun checkRecorderPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             requestRecorderPermissionLauncher.launch(Manifest.permission.CAMERA)
@@ -214,7 +237,6 @@ class MainFragment : Fragment() {
                     .show()
             }
         }
-
 
     //Contracts -----------------------------------------------------------------
     private val contractGallery =
