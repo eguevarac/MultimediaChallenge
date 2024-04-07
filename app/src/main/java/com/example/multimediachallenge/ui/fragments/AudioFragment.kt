@@ -17,7 +17,7 @@ import com.example.multimediachallenge.databinding.FragmentAudioBinding
 class AudioFragment : Fragment() {
 
     private lateinit var binding: FragmentAudioBinding
-    private lateinit var mediaPlayer: MediaPlayer
+    private var mediaPlayer: MediaPlayer? = null
     private lateinit var mediaController: MediaController
     private var isPlayingSound = false
 
@@ -44,8 +44,8 @@ class AudioFragment : Fragment() {
 
     override fun onDestroy() {
         super.onDestroy()
-        if (mediaPlayer.isPlaying) {
-            mediaPlayer.stop()
+        if (mediaPlayer != null && mediaPlayer!!.isPlaying) {
+            mediaPlayer!!.stop()
         }
     }
 
@@ -102,8 +102,8 @@ class AudioFragment : Fragment() {
 
         setupMediaController()
 
-        mediaPlayer.setDataSource(requireContext(), uri)
-        mediaPlayer.prepare()
+        mediaPlayer!!.setDataSource(requireContext(), uri)
+        mediaPlayer!!.prepare()
 
         mediaController.show()
     }
@@ -111,25 +111,25 @@ class AudioFragment : Fragment() {
     private fun setupMediaController() {
         mediaController.setMediaPlayer(object : MediaController.MediaPlayerControl {
             override fun start() {
-                mediaPlayer.start()
+                mediaPlayer!!.start()
             }
 
             override fun pause() {
-                mediaPlayer.pause()
+                mediaPlayer!!.pause()
             }
 
-            override fun getDuration() = mediaPlayer.duration
-            override fun getCurrentPosition() = mediaPlayer.currentPosition
+            override fun getDuration() = mediaPlayer!!.duration
+            override fun getCurrentPosition() = mediaPlayer!!.currentPosition
             override fun seekTo(pos: Int) {
-                mediaPlayer.seekTo(pos)
+                mediaPlayer!!.seekTo(pos)
             }
 
-            override fun isPlaying() = mediaPlayer.isPlaying
+            override fun isPlaying() = mediaPlayer!!.isPlaying
             override fun getBufferPercentage() = 0
             override fun canPause(): Boolean = true
             override fun canSeekBackward() = true
             override fun canSeekForward() = true
-            override fun getAudioSessionId() = mediaPlayer.audioSessionId
+            override fun getAudioSessionId() = mediaPlayer!!.audioSessionId
         })
 
         mediaController.setAnchorView(binding.vMediaController)
