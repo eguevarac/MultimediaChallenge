@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="commonMargin">16dp</dimen>
+    <dimen name="titleCardSize">40sp</dimen>
+    <dimen name="icSize">120dp</dimen>
+    <dimen name="cardHeight">500dp</dimen>
+    <dimen name="cardOthersHeight">350dp</dimen>
+    <dimen name="largeMargin">64dp</dimen>
+    <dimen name="imgSize">550dp</dimen>
+    <dimen name="etBodyWidth">500dp</dimen>
+    <dimen name="etBodyHeight">600dp</dimen>
+    <dimen name="ultraLargeMargin">180dp</dimen>
+    <dimen name="imgFilterSize">180dp</dimen>
+    <dimen name="itemListFiltersWidth">240dp</dimen>
+    <dimen name="commonTextSize">32sp</dimen>
+
+</resources>

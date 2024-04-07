@@ -6,5 +6,12 @@
     <dimen name="cardHeight">250dp</dimen>
     <dimen name="cardOthersHeight">175dp</dimen>
     <dimen name="largeMargin">32dp</dimen>
+    <dimen name="imgSize">275dp</dimen>
+    <dimen name="etBodyWidth">250dp</dimen>
+    <dimen name="etBodyHeight">300dp</dimen>
+    <dimen name="ultraLargeMargin">90dp</dimen>
+    <dimen name="imgFilterSize">90dp</dimen>
+    <dimen name="itemListFiltersWidth">120dp</dimen>
+    <dimen name="commonTextSize">16sp</dimen>
 
 </resources>

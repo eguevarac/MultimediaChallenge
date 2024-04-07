@@ -7,10 +7,19 @@
     tools:context=".ui.fragments.ImgEditorFragment"
     android:background="@drawable/gradient_background">
 
+    <ja.burhanrashid52.photoeditor.PhotoEditorView
+        android:id="@+id/photoEditorView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="@dimen/largeMargin"
+        android:layout_marginVertical="@dimen/ultraLargeMargin"
+        android:scaleType="centerCrop"
+        app:photo_src="@drawable/crows" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/largeMargin"
+        android:layout_margin="@dimen/commonMargin"
         android:gravity="end"
         android:orientation="horizontal">
 
@@ -31,44 +40,41 @@
             android:src="@drawable/ic_redo" />
     </LinearLayout>
 
-    <ja.burhanrashid52.photoeditor.PhotoEditorView
-        android:id="@+id/photoEditorView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="centerCrop"
-        app:photo_src="@drawable/crows" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:layout_margin="@dimen/largeMargin">
+        android:layout_margin="@dimen/commonMargin">
 
 
         <CheckBox
             android:id="@+id/chbBrush"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/commonMargin"
             android:button="@drawable/selector_brush" />
 
         <CheckBox
             android:id="@+id/chbEraser"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/commonMargin"
             android:button="@drawable/selector_eraser" />
 
         <CheckBox
             android:id="@+id/chbFilter"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/commonMargin"
             android:button="@drawable/selector_filter" />
 
         <ImageButton
             android:id="@+id/btnSave"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/largeMargin"
             android:background="@color/transparent"

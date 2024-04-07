@@ -16,8 +16,8 @@
 
     <ImageView
         android:id="@+id/img"
-        android:layout_width="275dp"
-        android:layout_height="275dp"
+        android:layout_width="@dimen/imgSize"
+        android:layout_height="@dimen/imgSize"
         android:src="@drawable/ic_image"
         android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
