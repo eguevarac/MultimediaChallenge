@@ -1,4 +1,4 @@
-package com.example.multimediachallenge.ui.activity
+package com.example.multimediachallenge.ui.activities
 
 import android.os.Bundle
 import android.view.MenuItem

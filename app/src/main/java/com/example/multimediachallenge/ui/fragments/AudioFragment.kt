@@ -42,6 +42,12 @@ class AudioFragment : Fragment() {
         }
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        if (mediaPlayer.isPlaying) {
+            mediaPlayer.stop()
+        }
+    }
 
     //Permissions -----------------------------------------------------------------
     private fun checkReadMediaAudioPermission() {

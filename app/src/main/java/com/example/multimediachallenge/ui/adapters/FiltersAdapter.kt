@@ -1,4 +1,4 @@
-package com.example.multimediachallenge.ui.fragments
+package com.example.multimediachallenge.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.View

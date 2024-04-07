@@ -15,6 +15,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.multimediachallenge.data.Constants
 import com.example.multimediachallenge.databinding.FragmentImgEditorBinding
+import com.example.multimediachallenge.ui.adapters.FiltersAdapter
 import ja.burhanrashid52.photoeditor.PhotoEditor
 import ja.burhanrashid52.photoeditor.PhotoEditor.Builder
 import ja.burhanrashid52.photoeditor.PhotoFilter

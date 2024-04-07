@@ -108,6 +108,7 @@ class MainFragment : Fragment() {
                 ).show()
             }
             btnEditionImg.setOnClickListener {
+                isCameraToVideo = false
                 checkReadMediaImagesPermission()
             }
             btnEditionVideo.setOnClickListener {
