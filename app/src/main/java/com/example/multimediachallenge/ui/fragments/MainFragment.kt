@@ -1,8 +1,6 @@
 package com.example.multimediachallenge.ui.fragments
 
 import android.Manifest
-import android.app.Activity
-import android.content.Intent
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Build
@@ -144,7 +142,7 @@ class MainFragment : Fragment() {
             try {
                 val intent =
                     requireContext().packageManager.getLaunchIntentForPackage("com.sec.android.app.voicenote")
-                contractRecorder.launch(intent)
+                startActivity(intent!!)
             } catch (e: Exception) {
                 Toast.makeText(
                     requireContext(),
@@ -153,7 +151,6 @@ class MainFragment : Fragment() {
                 )
                     .show()
             }
-
         }
     }
 
@@ -163,7 +160,7 @@ class MainFragment : Fragment() {
                 try {
                     val intent =
                         requireContext().packageManager.getLaunchIntentForPackage("com.sec.android.app.voicenote")
-                    contractRecorder.launch(intent)
+                    startActivity(intent!!)
                 } catch (e: Exception) {
                     Toast.makeText(
                         requireContext(),
@@ -271,15 +268,6 @@ class MainFragment : Fragment() {
                     "Ponle nombre al vídeo",
                     TypeFile.Video
                 )
-            }
-        }
-
-    private val contractRecorder: ActivityResultLauncher<Intent> =
-        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val data: Intent? = result.data
-
-            } else {
             }
         }
 }
