@@ -61,6 +61,7 @@ object StorageManager {
             }
         } catch (ex: Exception) {
             finalUri = null
+            Log.i(">", ex.toString())
         }
 
         return finalUri
@@ -119,6 +120,7 @@ object StorageManager {
             }
         } catch (ex: Exception) {
             finalUri = null
+            Log.i(">", ex.toString())
         }
 
         return finalUri
@@ -174,11 +176,10 @@ object StorageManager {
                 try {
                     val downloadsDirectory =
                         Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+                    Log.i(">", "Directorio en el que guardar ->" + downloadsDirectory.toString())
                     val file = File(downloadsDirectory, fileName)
 
-                    if (file.exists()) {
-                        file.delete()
-                    }
+
                     fileOutputStream = FileOutputStream(file)
                     fileOutputStream!!.write(fileContent.toByteArray())
 
@@ -191,6 +192,7 @@ object StorageManager {
                     }
                 } catch (e: Exception) {
                     e.printStackTrace()
+                    Log.i(">", e.toString())
                 } finally {
                     fileOutputStream?.close()
                 }

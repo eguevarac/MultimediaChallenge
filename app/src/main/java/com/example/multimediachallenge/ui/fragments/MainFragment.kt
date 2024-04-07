@@ -41,6 +41,9 @@ class MainFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        checkWriteExternalStoragePermission()
+        checkReadExternalStoragePermission()
+
         with(binding) {
             btnCaptureText.setOnClickListener {
                 checkWriteExternalStoragePermission()
@@ -52,18 +55,15 @@ class MainFragment : Fragment() {
             }
 
             btnCaptureSound.setOnClickListener {
-                checkWriteExternalStoragePermission()
                 checkRecorderPermission()
             }
 
             btnCaptureImg.setOnClickListener {
-                checkWriteExternalStoragePermission()
                 isCameraToVideo = false
                 checkCameraPermissions()
             }
 
             btnCaptureVideo.setOnClickListener {
-                checkWriteExternalStoragePermission()
                 isCameraToVideo = true
                 checkCameraPermissions()
             }
@@ -141,6 +141,23 @@ class MainFragment : Fragment() {
 
 
     //Permissions -----------------------------------------------------------------
+    private fun checkReadExternalStoragePermission() {
+        if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2) {
+            requestReadExternalStoragePermissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
+        }
+    }
+
+    private val requestReadExternalStoragePermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
+            if (!isGranted) {
+                Toast.makeText(
+                    requireContext(),
+                    "No podrás guardar las capturas tomadas",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        }
+
     private fun checkWriteExternalStoragePermission() {
         if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2) {
             requestWriteExternalStoragePermissionLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
