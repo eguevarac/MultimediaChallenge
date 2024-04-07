@@ -110,11 +110,13 @@ class MainFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
+
             btnEditionImg.setOnClickListener {
                 checkWriteExternalStoragePermission()
                 isCameraToVideo = false
                 checkReadMediaImagesPermission()
             }
+
             btnEditionVideo.setOnClickListener {
                 Toast.makeText(
                     requireContext(),
@@ -136,15 +138,16 @@ class MainFragment : Fragment() {
                     ).show()
                 }
             }
+
             btnMaps.setOnClickListener {
                 Dialogs.queryToMapsDialog(requireContext())
             }
+
             btnChrome.setOnClickListener {
                 Dialogs.queryToWikipediaDialog(requireContext())
             }
         }
     }
-
 
     //Permissions -----------------------------------------------------------------
     private fun checkReadExternalStoragePermission() {

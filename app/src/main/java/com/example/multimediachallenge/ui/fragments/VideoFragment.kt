@@ -18,7 +18,6 @@ class VideoFragment : Fragment() {
     private lateinit var mediaController: MediaController
     private lateinit var binding: FragmentVideoBinding
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -29,7 +28,6 @@ class VideoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         binding.btnFindVideo.setOnClickListener {
             checkReadMediaVideoPermission()
         }
@@ -67,7 +65,6 @@ class VideoFragment : Fragment() {
                 mediaController.setMediaPlayer(binding.video)
                 binding.video.setMediaController(mediaController)
                 binding.video.start()
-
             }
         }
 }

@@ -13,13 +13,16 @@ object Dialogs {
             .setTitle(title)
             .setView(editText)
             .setPositiveButton("Aceptar") { dialog, _ ->
+
                 if (typeFile == TypeFile.Picture) {
+
                     StorageManager.addImageToGallery(context, editText.text.toString())
+
                 } else if (typeFile == TypeFile.Video) {
+
                     StorageManager.addVideoToStorage(context, editText.text.toString())
-                } else if (typeFile == TypeFile.Audio) {
-                    // TODO: tengo que hacer aquí lo de guardar el audio
                 }
+
                 dialog.dismiss()
             }
             .setNegativeButton("Cancelar") { dialog, _ ->

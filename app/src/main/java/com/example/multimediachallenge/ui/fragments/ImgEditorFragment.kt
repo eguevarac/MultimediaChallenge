@@ -32,7 +32,6 @@ class ImgEditorFragment : Fragment(), FiltersAdapter.FilterListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
         binding = FragmentImgEditorBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -75,7 +74,6 @@ class ImgEditorFragment : Fragment(), FiltersAdapter.FilterListener {
         }
     }
 
-
     private fun setupAdapter() {
         val adapter = FiltersAdapter(Constants.filters, this)
         binding.recyclerView.setHasFixedSize(true)
@@ -89,12 +87,12 @@ class ImgEditorFragment : Fragment(), FiltersAdapter.FilterListener {
         val timestamp = System.currentTimeMillis()
         val fileName = "$timestamp.jpg"
         val filePath = File(directory, fileName)
-        Log.i(">", "dirección ->   $filePath")
+        Log.i(">", "dirección -> $filePath")
 
         viewLifecycleOwner.lifecycleScope.launch {
             photoEditor.saveAsFile(filePath.absolutePath, object : PhotoEditor.OnSaveListener {
                 override fun onSuccess(imagePath: String) {
-                    // Escanear el archivo para que aparezca en la galería
+
                     refreshGallery(filePath.absolutePath)
                 }
 
@@ -117,8 +115,11 @@ class ImgEditorFragment : Fragment(), FiltersAdapter.FilterListener {
             null
         )
 
-        Toast.makeText(requireContext(), "La imagen se ha guardado con éxito!", Toast.LENGTH_SHORT)
-            .show()
+        Toast.makeText(
+            requireContext(),
+            "La imagen se ha guardado con éxito!",
+            Toast.LENGTH_SHORT
+        ).show()
     }
 
     private fun setupPhotoEditor() {

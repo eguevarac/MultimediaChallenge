@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragments.ImgEditorFragment"
-    android:background="@drawable/gradient_background">
+    android:background="@drawable/gradient_background"
+    tools:context=".ui.fragments.ImgEditorFragment">
 
     <ja.burhanrashid52.photoeditor.PhotoEditorView
         android:id="@+id/photoEditorView"
@@ -29,6 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/commonMargin"
             android:background="@color/transparent"
+            android:importantForAccessibility="no"
             android:src="@drawable/ic_undo" />
 
         <ImageButton
@@ -37,6 +38,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/commonMargin"
             android:background="@color/transparent"
+            android:importantForAccessibility="no"
             android:src="@drawable/ic_redo" />
     </LinearLayout>
 
@@ -50,45 +52,49 @@
         <CheckBox
             android:id="@+id/chbBrush"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/commonMargin"
-            android:button="@drawable/selector_brush" />
+            android:layout_weight="1"
+            android:button="@drawable/selector_brush"
+            tools:ignore="VisualLintButtonSize,DuplicateSpeakableTextCheck" />
 
         <CheckBox
             android:id="@+id/chbEraser"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/commonMargin"
-            android:button="@drawable/selector_eraser" />
+            android:layout_weight="1"
+            android:button="@drawable/selector_eraser"
+            tools:ignore="VisualLintButtonSize" />
 
         <CheckBox
             android:id="@+id/chbFilter"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/commonMargin"
-            android:button="@drawable/selector_filter" />
+            android:layout_weight="1"
+            android:button="@drawable/selector_filter"
+            tools:ignore="VisualLintButtonSize" />
 
         <ImageButton
             android:id="@+id/btnSave"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/largeMargin"
+            android:layout_weight="1"
             android:background="@color/transparent"
+            android:importantForAccessibility="no"
             android:src="@drawable/ic_save" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="wrap_content"
-        android:background="@color/white"
-        android:visibility="gone"
         android:layout_height="match_parent"
         android:layout_gravity="end"
+        android:background="@color/white"
         android:backgroundTint="@color/cardview_dark_background"
+        android:visibility="gone"
         tools:listitem="@layout/item_filter" />
 
 </FrameLayout>

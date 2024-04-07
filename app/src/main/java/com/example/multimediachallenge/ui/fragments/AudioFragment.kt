@@ -91,7 +91,6 @@ class AudioFragment : Fragment() {
             }
         }
 
-
     private fun loadAudio(uri: Uri) {
         mediaPlayer = if (Build.VERSION.SDK_INT >= 34) {
             MediaPlayer(requireContext())
@@ -113,17 +112,14 @@ class AudioFragment : Fragment() {
             override fun start() {
                 mediaPlayer!!.start()
             }
-
             override fun pause() {
                 mediaPlayer!!.pause()
             }
-
             override fun getDuration() = mediaPlayer!!.duration
             override fun getCurrentPosition() = mediaPlayer!!.currentPosition
             override fun seekTo(pos: Int) {
                 mediaPlayer!!.seekTo(pos)
             }
-
             override fun isPlaying() = mediaPlayer!!.isPlaying
             override fun getBufferPercentage() = 0
             override fun canPause(): Boolean = true
@@ -131,7 +127,6 @@ class AudioFragment : Fragment() {
             override fun canSeekForward() = true
             override fun getAudioSessionId() = mediaPlayer!!.audioSessionId
         })
-
         mediaController.setAnchorView(binding.vMediaController)
     }
 }

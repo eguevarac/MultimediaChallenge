@@ -11,22 +11,22 @@
         android:id="@+id/video"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_image"
         android:layout_margin="@dimen/largeMargin"
         android:layout_marginBottom="@dimen/largeMargin"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_image"
+        app:layout_constraintBottom_toTopOf="@id/btnFindVideo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/btnFindVideo" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnFindVideo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/findVideoAtGallery"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginBottom="@dimen/ultraLargeMargin"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        android:text="@string/findVideoAtGallery"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

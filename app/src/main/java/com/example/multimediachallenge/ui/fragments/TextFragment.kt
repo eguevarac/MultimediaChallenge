@@ -101,8 +101,6 @@ class TextFragment : Fragment() {
         } else {
             binding.etTitle.isEnabled = false
         }
-
-
     }
 
     private fun checkIfPossibleAndSave() {
@@ -131,36 +129,28 @@ class TextFragment : Fragment() {
         if (binding.chbBold.isChecked && !binding.chbItalic.isChecked) {
 
             textToShow = "<b>$originText</b>"
-            //textToShow = setFontSize(textToShow)
-            //spanned = Html.fromHtml(textToShow)
             spanned = HtmlCompat.fromHtml(textToShow, HtmlCompat.FROM_HTML_MODE_LEGACY)
 
         } else if (binding.chbBold.isChecked && binding.chbItalic.isChecked) {
 
             textToShow = "<em><b>$originText</b></em>"
-            //textToShow = setFontSize(textToShow)
-            //spanned = Html.fromHtml(textToShow)
             spanned = HtmlCompat.fromHtml(textToShow, HtmlCompat.FROM_HTML_MODE_LEGACY)
 
         } else if (!binding.chbBold.isChecked && binding.chbItalic.isChecked) {
 
             textToShow = "<em>$originText</em>"
-            //textToShow = setFontSize(textToShow)
-            //spanned = Html.fromHtml(textToShow)
             spanned = HtmlCompat.fromHtml(textToShow, HtmlCompat.FROM_HTML_MODE_LEGACY)
 
         } else if (!binding.chbBold.isChecked && !binding.chbItalic.isChecked) {
 
-            //textToShow = setFontSize(originText)
-            //spanned = Html.fromHtml(originText)
             spanned = HtmlCompat.fromHtml(originText, HtmlCompat.FROM_HTML_MODE_LEGACY)
         }
 
         binding.etBody.setText(spanned)
         setFontSize()
 
-        Log.i(">", "el textToShow ->" + textToShow)
-        Log.i(">", "el spaned ->" + spanned)
+        Log.i(">", "el textToShow ->  $textToShow")
+        Log.i(">", "el spaned ->  $spanned")
     }
 
     private fun setFontSize() {
@@ -238,33 +228,3 @@ class TextFragment : Fragment() {
         return fileName
     }
 }
-
-/*private fun setFontSize(textToResize: String): String {
-        var textToShow: String?
-        when (binding.spinner.selectedItem) {
-            "h1" -> {
-                textToShow = "<h1>" + textToResize + "</h1>"
-            }
-
-            "h2" -> {
-                textToShow = "<h2>" + textToResize + "</h2>"
-            }
-
-            "h3" -> {
-                textToShow = "<h3>" + textToResize + "</h3>"
-            }
-
-            "h4" -> {
-                textToShow = "<h4>" + textToResize + "</h4>"
-            }
-
-            "h5" -> {
-                textToShow = "<h5>" + textToResize + "</h5>"
-            }
-
-            else -> {
-                textToShow = textToResize
-            }
-        }
-        return textToShow
-    }*/

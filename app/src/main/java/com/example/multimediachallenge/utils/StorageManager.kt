@@ -176,9 +176,8 @@ object StorageManager {
                 try {
                     val downloadsDirectory =
                         Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-                    Log.i(">", "Directorio en el que guardar ->" + downloadsDirectory.toString())
+                    Log.i(">", "Directorio en el que guardar -> $downloadsDirectory")
                     val file = File(downloadsDirectory, fileName)
-
 
                     fileOutputStream = FileOutputStream(file)
                     fileOutputStream!!.write(fileContent.toByteArray())

@@ -13,96 +13,102 @@
         android:layout_height="wrap_content">
 
 
-
         <TextView
             android:id="@+id/tvSize"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/fontSize"
             android:layout_marginBottom="@dimen/commonMargin"
-            app:layout_constraintStart_toEndOf="@id/chbBold"
+            android:text="@string/fontSize"
+            app:layout_constraintBottom_toBottomOf="@id/chbBold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="@id/chbBold" />
+            app:layout_constraintStart_toEndOf="@id/chbBold" />
 
         <Spinner
             android:id="@+id/spinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/commonMargin"
+            android:background="@color/black"
+            android:popupBackground="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/chbBold"
             app:layout_constraintTop_toBottomOf="@id/tvSize"
-            android:background="@color/white"
-            app:layout_constraintEnd_toEndOf="parent" />
+            tools:ignore="TouchTargetSizeCheck" />
 
         <CheckBox
             android:id="@+id/chbBold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/tvSize"
-            app:layout_constraintTop_toBottomOf="@id/etTitle"
-            app:layout_constraintBottom_toTopOf="@id/chbItalic"
             android:text="@string/bold"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/chbItalic"
+            app:layout_constraintEnd_toStartOf="@id/tvSize"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/etTitle" />
 
         <CheckBox
             android:id="@+id/chbItalic"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/tvSize"
-            app:layout_constraintTop_toBottomOf="@id/chbBold"
-            app:layout_constraintBottom_toTopOf="@id/etBody"
             android:text="@string/italic"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toTopOf="@id/etBody"
+            app:layout_constraintEnd_toStartOf="@id/tvSize"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/chbBold" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:background="@color/white"
-            android:textColor="@color/black"
-            android:hint="@string/title"
             android:layout_marginTop="@dimen/largeMargin"
+            android:background="@color/white"
+            android:hint="@string/title"
+            android:singleLine="true"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             app:layout_constraintEnd_toEndOf="@id/etBody"
             app:layout_constraintStart_toStartOf="@id/etBody"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="TouchTargetSizeCheck,VisualLintTextFieldSize" />
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etBody"
             android:layout_width="@dimen/etBodyWidth"
             android:layout_height="@dimen/etBodyHeight"
-            android:background="@color/white"
-            android:textColor="@color/black"
-            android:gravity="start"
-            android:inputType="textMultiLine"
-            android:hint="@string/body"
             android:layout_marginTop="@dimen/largeMargin"
+            android:background="@color/white"
+            android:gravity="start"
+            android:hint="@string/body"
+            android:inputType="textMultiLine"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/etTitle" />
+            app:layout_constraintTop_toBottomOf="@id/etTitle"
+            tools:ignore="VisualLintTextFieldSize" />
 
         <Button
             android:id="@+id/btnFindTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/findText"
             android:layout_marginTop="@dimen/largeMargin"
-            app:layout_constraintTop_toBottomOf="@id/etBody"
+            android:text="@string/findText"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/etBody" />
 
         <Button
             android:id="@+id/btnAccept"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/save"
             android:layout_marginTop="@dimen/commonMargin"
             android:layout_marginBottom="@dimen/largeMargin"
-            app:layout_constraintTop_toBottomOf="@id/btnFindTxt"
+            android:text="@string/save"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintTop_toBottomOf="@id/btnFindTxt" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
